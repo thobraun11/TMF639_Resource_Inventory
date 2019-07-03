@@ -1,0 +1,44 @@
+{
+    "api 'Resource Inventory Management'": {
+        "doc": "This is Swagger UI environment generated for the TMF Resource Inventory Management specification", 
+        "hostUrl": "https://serverRoot", 
+        "basePath": "/tmf-api/resourceInventoryManagement/v4/", 
+        "version": "4.0", 
+        "flavors": "regular", 
+        "resources": [
+            "LogicalResource", 
+            "PhysicalResource", 
+            "Resource"
+        ], 
+        "rules LogicalResource": {
+            "operations": "GET,POST,PATCH,DELETE", 
+            "mandatory in post": "value", 
+            "patchable": "ALL EXCEPT href,id", 
+            "notifications": [
+                "create", 
+                "attributeValueChange", 
+                "delete"
+            ]
+        }, 
+        "rules PhysicalResource": {
+            "operations": "GET,POST,PATCH,DELETE", 
+            "mandatory in post": "name,serialNumber", 
+            "patchable": "ALL EXCEPT href,id", 
+            "notifications": [
+                "create", 
+                "attributeValueChange", 
+                "delete"
+            ]
+        }, 
+        "rules Resource": {
+            "operations": "GET,POST,PATCH,DELETE", 
+            "mandatory in post": "name", 
+            "patchable": "ALL EXCEPT href,id", 
+            "notifications": [
+                "create", 
+                "attributeValueChange", 
+                "delete"
+            ]
+        }
+    }
+}

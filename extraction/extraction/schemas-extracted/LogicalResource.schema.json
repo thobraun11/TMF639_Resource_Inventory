@@ -1,0 +1,110 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#", 
+    "$id": "LogicalResource.schema.json", 
+    "title": "LogicalResource", 
+    "definitions": {
+        "LogicalResource": {
+            "type": "object", 
+            "description": "Logic resource is a type of resource that describes the common set of attributes shared by all concrete logical resources (e.g. TPE, MSISDN, IP Addresses) in the inventory.", 
+            "properties": {
+                "@baseType": {
+                    "type": "string", 
+                    "description": "The base type for use in polymorphic collections"
+                }, 
+                "@referredType": {
+                    "type": "string", 
+                    "description": "The actual type of the target instance when needed for disambiguation."
+                }, 
+                "@schemaLocation": {
+                    "type": "string", 
+                    "description": "A link to the schema describing a resource (for type extension)."
+                }, 
+                "@type": {
+                    "type": "string", 
+                    "description": "The class type of the actual resource (for type extension)."
+                }, 
+                "category": {
+                    "type": "string", 
+                    "description": "Category of the concrete resource. e.g Gold, Silver for MSISDN concrete resource"
+                }, 
+                "characteristic": {
+                    "type": "array", 
+                    "items": {
+                        "$ref": "ResourceCharacteristic.schema.json#/definitions/ResourceCharacteristic"
+                    }
+                }, 
+                "description": {
+                    "type": "string", 
+                    "description": "free-text description of the resource"
+                }, 
+                "endDate": {
+                    "type": "string", 
+                    "format": "date-time", 
+                    "description": "A date time( DateTime). The date till the resource is effective"
+                }, 
+                "href": {
+                    "type": "string", 
+                    "description": "The URI for the object itself."
+                }, 
+                "id": {
+                    "type": "string", 
+                    "description": "Identifier of an instance of the resource. Required to be unique within the resource type.  Used in URIs as the identifier for specific instances of a type."
+                }, 
+                "lifecycleState": {
+                    "type": "string", 
+                    "description": "The life cycle state of the resource."
+                }, 
+                "name": {
+                    "type": "string", 
+                    "description": "A string used to give a name to the resource"
+                }, 
+                "note": {
+                    "type": "array", 
+                    "items": {
+                        "$ref": "Note.schema.json#/definitions/Note"
+                    }
+                }, 
+                "partyRole": {
+                    "type": "array", 
+                    "items": {
+                        "$ref": "PartyRoleRef.schema.json#/definitions/PartyRoleRef"
+                    }
+                }, 
+                "place": {
+                    "$ref": "Place.schema.json#/definitions/Place"
+                }, 
+                "relatedParty": {
+                    "type": "array", 
+                    "items": {
+                        "$ref": "RelatedPartyRef.schema.json#/definitions/RelatedPartyRef"
+                    }
+                }, 
+                "resourceRelationship": {
+                    "type": "array", 
+                    "items": {
+                        "$ref": "ResourceRelationship.schema.json#/definitions/ResourceRelationship"
+                    }
+                }, 
+                "resourceSpecification": {
+                    "$ref": "ResourceSpecificationRef.schema.json#/definitions/ResourceSpecificationRef"
+                }, 
+                "startDate": {
+                    "type": "string", 
+                    "format": "date-time", 
+                    "description": "A date time( DateTime). The date from which the resource is effective"
+                }, 
+                "value": {
+                    "type": "string", 
+                    "description": "the value of the logical resource. E.g '0746712345' for  MSISDN's"
+                }, 
+                "version": {
+                    "type": "string", 
+                    "description": "A field that identifies the specific version of an instance of a resource."
+                }
+            },
+            "required": [
+                "name"
+            ]
+        }
+    }
+}

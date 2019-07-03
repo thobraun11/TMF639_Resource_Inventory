@@ -3,9 +3,9 @@
 api 'Resource Inventory Management':
   doc: "This is Swagger UI environment generated for the TMF Resource Inventory Management specification"
   hostUrl: "https://serverRoot"
-  basePath: "/tmf-api/resourceInventoryManagement/v4/"
-  version: "4.0"
-  flavors: regular
+  basePath: "/tmf-api/resourceInventoryManagement/v2/"
+  version: "2.0"
+  flavors: admin
   resources:
     - LogicalResource
     - PhysicalResource
@@ -15,27 +15,13 @@ api 'Resource Inventory Management':
     operations: GET,POST,PATCH,DELETE
     mandatory in post: value
     patchable: ALL EXCEPT href,id
-    notifications:
-      - create
-      - attributeValueChange
-      - delete
   ## PhysicalResource
   rules PhysicalResource:
     operations: GET,POST,PATCH,DELETE
     mandatory in post: name,serialNumber
     patchable: ALL EXCEPT href,id
-    notifications:
-      - create
-      - attributeValueChange
-      - delete
   ## Resource
   rules Resource:
     operations: GET,POST,PATCH,DELETE
     mandatory in post: name
     patchable: ALL EXCEPT href,id
-    notifications:
-      - create
-      - attributeValueChange
-      - delete
-    
-

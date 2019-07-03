@@ -1,0 +1,63 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#", 
+    "$id": "ResourceDeleteEvent.schema.json", 
+    "title": "ResourceDeleteEvent", 
+    "definitions": {
+        "ResourceDeleteEvent": {
+            "type": "object", 
+            "description": "The notification data structure", 
+            "properties": {
+                "eventId": {
+                    "type": "string", 
+                    "description": "The identifier of the notification."
+                }, 
+                "eventTime": {
+                    "type": "string", 
+                    "description": "Time of the event occurrence.", 
+                    "format": "date-time"
+                }, 
+                "description": {
+                    "type": "string", 
+                    "description": "An explnatory of the event."
+                }, 
+                "timeOcurred": {
+                    "type": "string", 
+                    "description": "The time the event occured.", 
+                    "format": "date-time"
+                }, 
+                "title": {
+                    "type": "string", 
+                    "description": "The title of the event."
+                }, 
+                "eventType": {
+                    "type": "string", 
+                    "description": "The type of the notification."
+                }, 
+                "domain": {
+                    "type": "string", 
+                    "description": "The domain of the event."
+                }, 
+                "priority": {
+                    "type": "string", 
+                    "description": "A priority."
+                }, 
+                "href": {
+                    "type": "string", 
+                    "description": "Reference of the ProcessFlow"
+                }, 
+                "id": {
+                    "type": "string", 
+                    "description": "Identifier of the Process flow"
+                }, 
+                "correlationId": {
+                    "type": "string", 
+                    "description": "The correlation id for this event."
+                }, 
+                "event": {
+                    "description": "The event payload linked to the involved resource object", 
+                    "$ref": "ResourceDeleteEventPayload.schema.json#ResourceDeleteEventPayload"
+                }
+            }
+        }
+    }
+}
