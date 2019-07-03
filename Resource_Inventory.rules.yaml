@@ -1,0 +1,25 @@
+
+## API rule definitions
+
+api 'Resource Inventory':
+  doc: "My api short documentation"
+  hostUrl: https://serverRoot
+  basePath: /tmf-api/resourceInventory/v4/
+  version: "4.0.0"
+  flavors: regular
+  resources:
+    - MyResource
+  ## MyResource
+  rules ServiceCatalog:
+     operations: GET, PATCH, POST, DELETE
+     patchable: ALL EXCEPT id, href
+#     mandatory in post:
+#       - name
+#    sub-mandatory in patch/post:
+#       MyEntity: myattribute
+     notifications:
+       - create
+       - change
+       - batch
+       - delete
+
