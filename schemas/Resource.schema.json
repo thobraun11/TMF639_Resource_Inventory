@@ -24,7 +24,7 @@
                 "endOperatingDate": {
                     "type": "string", 
                     "format": "date-time", 
-                    "description": "A date time( DateTime). The date till the resource is effective"
+                    "description": "A date time( DateTime). The date till the resource is operating"
                 }, 
                 "href": {
                     "type": "string", 
@@ -75,7 +75,7 @@
                 "startOperatingDate": {
                     "type": "string", 
                     "format": "date-time", 
-                    "description": "A date time( DateTime). The date from which the resource is created"
+                    "description": "A date time( DateTime). The date from which the resource is operating"
                 }, 
                 "version": {
                     "type": "string", 
