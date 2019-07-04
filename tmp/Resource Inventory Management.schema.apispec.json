@@ -6,16 +6,12 @@
     "basePath": "/tmf-api/resourceInventoryManagement/v4/",
     "description": "This is Swagger UI environment generated for the TMF Resource Inventory Management specification",
     "regularResources": [
-        "resource",
-        "logicalResource",
-        "physicalResource"
+        "resource"
     ],
     "eventResources": [],
     "usedClassesInRegularApi": [
-        "LogicalResource",
         "Note",
         "PartyRoleRef",
-        "PhysicalResource",
         "Place",
         "RelatedPartyRef",
         "Resource",
@@ -26,9 +22,7 @@
     ],
     "usedClassesInEventsApi": [],
     "resourceClasses": [
-        "Resource",
-        "LogicalResource",
-        "PhysicalResource"
+        "Resource"
     ],
     "resources": [
         {
@@ -141,271 +135,6 @@
                     "documentation": "A field that identifies the specific version of an instance of a resource."
                 }
             }
-        },
-        {
-            "name": "logicalResource",
-            "class": "LogicalResource",
-            "documentation": "Logic resource is a type of resource that describes the common set of attributes shared by all concrete logical resources (e.g. TPE, MSISDN, IP Addresses) in the inventory.",
-            "actions": [
-                "list",
-                "retrieve",
-                "create",
-                "update",
-                "partialupdate",
-                "delete"
-            ],
-            "attributes": [
-                "category",
-                "description",
-                "endOperatingDate",
-                "href",
-                "id",
-                "lifecycleState",
-                "name",
-                "startOperatingDate",
-                "version",
-                "@referredType",
-                "value",
-                "characteristic",
-                "note",
-                "partyRole",
-                "place",
-                "relatedParty",
-                "resourceRelationship",
-                "resourceSpecification"
-            ],
-            "attributeDetails": {
-                "category": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "Category of the concrete resource. e.g Gold, Silver for MSISDN concrete resource"
-                },
-                "description": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "free-text description of the resource"
-                },
-                "endOperatingDate": {
-                    "type": "DateTime",
-                    "multiplicity": "0..1",
-                    "documentation": "A date time( DateTime). The date till the resource is operating"
-                },
-                "href": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "The URI for the object itself."
-                },
-                "id": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "Identifier of an instance of the resource. Required to be unique within the resource type.  Used in URIs as the identifier for specific instances of a type."
-                },
-                "lifecycleState": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "The life cycle state of the resource."
-                },
-                "name": {
-                    "type": "String",
-                    "multiplicity": "1",
-                    "documentation": "A string used to give a name to the resource"
-                },
-                "startOperatingDate": {
-                    "type": "DateTime",
-                    "multiplicity": "0..1",
-                    "documentation": "A date time( DateTime). The date from which the resource is operating"
-                },
-                "version": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "A field that identifies the specific version of an instance of a resource."
-                },
-                "@referredType": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "The actual type of the target instance when needed for disambiguation."
-                },
-                "value": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "the value of the logical resource. E.g '0746712345' for  MSISDN's"
-                },
-                "characteristic": {
-                    "type": "ResourceCharacteristic",
-                    "multiplicity": "*"
-                },
-                "note": {
-                    "type": "Note",
-                    "multiplicity": "*",
-                    "documentation": "Extra information about a given entity"
-                },
-                "partyRole": {
-                    "type": "PartyRoleRef",
-                    "multiplicity": "*",
-                    "documentation": "Party role reference. A party role represents the part played by a party in a given context."
-                },
-                "place": {
-                    "type": "Place",
-                    "multiplicity": "0..1",
-                    "documentation": "Place reference. Place defines the places where the products are sold or delivered."
-                },
-                "relatedParty": {
-                    "type": "RelatedPartyRef",
-                    "multiplicity": "*",
-                    "documentation": "RelatedParty reference. A related party defines party or party role linked to a specific entity."
-                },
-                "resourceRelationship": {
-                    "type": "ResourceRelationship",
-                    "multiplicity": "*"
-                },
-                "resourceSpecification": {
-                    "type": "ResourceSpecificationRef",
-                    "multiplicity": "0..1",
-                    "documentation": "Resource Specification reference: The ResourceSpecification is required to realize a ProductSpecification."
-                }
-            }
-        },
-        {
-            "name": "physicalResource",
-            "class": "PhysicalResource",
-            "documentation": "Physical resource is a type of resource that describes the common set of attributes shared by all concrete physical resources (e.g. EQUIPMENT) in the inventory.",
-            "actions": [
-                "list",
-                "retrieve",
-                "create",
-                "update",
-                "partialupdate",
-                "delete"
-            ],
-            "attributes": [
-                "category",
-                "description",
-                "endOperatingDate",
-                "href",
-                "id",
-                "lifecycleState",
-                "name",
-                "startOperatingDate",
-                "version",
-                "@referredType",
-                "manufactureDate",
-                "powerState",
-                "resourceSpecification",
-                "serialNumber",
-                "versionNumber",
-                "characteristic",
-                "note",
-                "partyRole",
-                "place",
-                "relatedParty",
-                "resourceRelationship",
-                "resourceSpecification"
-            ],
-            "attributeDetails": {
-                "category": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "Category of the concrete resource. e.g Gold, Silver for MSISDN concrete resource"
-                },
-                "description": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "free-text description of the resource"
-                },
-                "endOperatingDate": {
-                    "type": "DateTime",
-                    "multiplicity": "0..1",
-                    "documentation": "A date time( DateTime). The date till the resource is operating"
-                },
-                "href": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "The URI for the object itself."
-                },
-                "id": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "Identifier of an instance of the resource. Required to be unique within the resource type.  Used in URIs as the identifier for specific instances of a type."
-                },
-                "lifecycleState": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "The life cycle state of the resource."
-                },
-                "name": {
-                    "type": "String",
-                    "multiplicity": "1",
-                    "documentation": "A string used to give a name to the resource"
-                },
-                "startOperatingDate": {
-                    "type": "DateTime",
-                    "multiplicity": "0..1",
-                    "documentation": "A date time( DateTime). The date from which the resource is operating"
-                },
-                "version": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "A field that identifies the specific version of an instance of a resource."
-                },
-                "@referredType": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "The actual type of the target instance when needed for disambiguation."
-                },
-                "manufactureDate": {
-                    "type": "DateTime",
-                    "multiplicity": "0..1",
-                    "documentation": "This is a string attribute that defines the date of manufacture of this item in the fixed format \"dd/mm/yyyy\". This is an optional attribute."
-                },
-                "powerState": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "This defines the current power status of the hardware item. Values include:\n\n  0:  Unknown\n  1:  Not Applicable\n  2:  No Power Applied\n  3: Full Power Applied\n  4:  Power Save - Normal\n  5:  Power Save - Degraded\n  6:  Power Save - Standby\n  7:  Power Save - Critical\n  8:  Power Save - Low Power Mode\n  9:  Power Save - Unknown\n 10: Power Cycle\n 11: Power Warning\n 12: Power Off"
-                },
-                "resourceSpecification": {
-                    "type": "ResourceSpecificationRef",
-                    "multiplicity": "0..1",
-                    "documentation": "Resource Specification reference: The ResourceSpecification is required to realize a ProductSpecification."
-                },
-                "serialNumber": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "This is a string that represents a manufacturer-allocated number used to identify different instances of the same hardware item. The ModelNumber and PartNumber attributes are used to identify different types of hardware items. This is a REQUIRED attribute."
-                },
-                "versionNumber": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "This is a string that identifies the version of this physical resource. This is an optional attribute."
-                },
-                "characteristic": {
-                    "type": "ResourceCharacteristic",
-                    "multiplicity": "*"
-                },
-                "note": {
-                    "type": "Note",
-                    "multiplicity": "*",
-                    "documentation": "Extra information about a given entity"
-                },
-                "partyRole": {
-                    "type": "PartyRoleRef",
-                    "multiplicity": "*",
-                    "documentation": "Party role reference. A party role represents the part played by a party in a given context."
-                },
-                "place": {
-                    "type": "Place",
-                    "multiplicity": "0..1",
-                    "documentation": "Place reference. Place defines the places where the products are sold or delivered."
-                },
-                "relatedParty": {
-                    "type": "RelatedPartyRef",
-                    "multiplicity": "*",
-                    "documentation": "RelatedParty reference. A related party defines party or party role linked to a specific entity."
-                },
-                "resourceRelationship": {
-                    "type": "ResourceRelationship",
-                    "multiplicity": "*"
-                }
-            }
         }
     ],
     "flavors": [
@@ -413,89 +142,6 @@
     ],
     "resourcesByFlavors": {
         "regular": {
-            "LogicalResource": {
-                "actions": [
-                    "list",
-                    "retrieve",
-                    "create",
-                    "partialupdate",
-                    "delete"
-                ],
-                "actionDetails": {
-                    "create": {
-                        "rules": {
-                            "MandatoryAttributes": {
-                                "mandatory": [
-                                    "value"
-                                ]
-                            },
-                            "PatchableAttributes": {
-                                "nonpatchable": [
-                                    "href",
-                                    "id"
-                                ]
-                            }
-                        }
-                    },
-                    "partialupdate": {
-                        "rules": {
-                            "PatchableAttributes": {
-                                "nonpatchable": [
-                                    "href",
-                                    "id"
-                                ]
-                            }
-                        }
-                    }
-                },
-                "notifications": [
-                    "create",
-                    "attributeValueChange",
-                    "delete"
-                ]
-            },
-            "PhysicalResource": {
-                "actions": [
-                    "list",
-                    "retrieve",
-                    "create",
-                    "partialupdate",
-                    "delete"
-                ],
-                "actionDetails": {
-                    "create": {
-                        "rules": {
-                            "MandatoryAttributes": {
-                                "mandatory": [
-                                    "name",
-                                    "serialNumber"
-                                ]
-                            },
-                            "PatchableAttributes": {
-                                "nonpatchable": [
-                                    "href",
-                                    "id"
-                                ]
-                            }
-                        }
-                    },
-                    "partialupdate": {
-                        "rules": {
-                            "PatchableAttributes": {
-                                "nonpatchable": [
-                                    "href",
-                                    "id"
-                                ]
-                            }
-                        }
-                    }
-                },
-                "notifications": [
-                    "create",
-                    "attributeValueChange",
-                    "delete"
-                ]
-            },
             "Resource": {
                 "actions": [
                     "list",
@@ -546,39 +192,19 @@
         "byFlavor": {
             "regular": {
                 "resourceIds": [
-                    "LogicalResource",
-                    "PhysicalResource",
                     "Resource"
                 ]
             }
         },
         "allRegularResources": [
-            "LogicalResource",
-            "PhysicalResource",
             "Resource"
         ],
         "allEventResources": [
-            "LogicalResourceCreateEvent",
-            "LogicalResourceAttributeValueChangeEvent",
-            "LogicalResourceDeleteEvent",
-            "PhysicalResourceCreateEvent",
-            "PhysicalResourceAttributeValueChangeEvent",
-            "PhysicalResourceDeleteEvent",
             "ResourceCreateEvent",
             "ResourceAttributeValueChangeEvent",
             "ResourceDeleteEvent"
         ],
         "eventNotifications": {
-            "LogicalResource": [
-                "create",
-                "attributeValueChange",
-                "delete"
-            ],
-            "PhysicalResource": [
-                "create",
-                "attributeValueChange",
-                "delete"
-            ],
             "Resource": [
                 "create",
                 "attributeValueChange",
@@ -586,12 +212,6 @@
             ]
         },
         "eventTargetClasses": {
-            "LogicalResourceCreateEvent": "LogicalResource",
-            "LogicalResourceAttributeValueChangeEvent": "LogicalResource",
-            "LogicalResourceDeleteEvent": "LogicalResource",
-            "PhysicalResourceCreateEvent": "PhysicalResource",
-            "PhysicalResourceAttributeValueChangeEvent": "PhysicalResource",
-            "PhysicalResourceDeleteEvent": "PhysicalResource",
             "ResourceCreateEvent": "Resource",
             "ResourceAttributeValueChangeEvent": "Resource",
             "ResourceDeleteEvent": "Resource"
@@ -607,8 +227,6 @@
         ],
         "resources": {
             "regular": [
-                "LogicalResource",
-                "PhysicalResource",
                 "Resource"
             ]
         },

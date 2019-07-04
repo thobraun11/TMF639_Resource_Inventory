@@ -6,8 +6,6 @@
         "version": "4.0",
         "flavors": "regular",
         "resources": [
-            "LogicalResource",
-            "PhysicalResource",
             "Resource"
         ],
         "rules LogicalResource": {

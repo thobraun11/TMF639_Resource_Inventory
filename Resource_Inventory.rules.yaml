@@ -7,8 +7,6 @@ api 'Resource Inventory Management':
   version: "4.0"
   flavors: regular
   resources:
-    - LogicalResource
-    - PhysicalResource
     - Resource
   ## LogicalResource
   rules LogicalResource:

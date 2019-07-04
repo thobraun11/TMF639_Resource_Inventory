@@ -10,8 +10,6 @@
             ],
             "resources": {
                 "ANY": [
-                    "LogicalResource",
-                    "PhysicalResource",
                     "Resource"
                 ]
             },

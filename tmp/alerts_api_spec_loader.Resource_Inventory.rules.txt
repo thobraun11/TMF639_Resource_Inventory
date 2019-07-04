@@ -10,7 +10,7 @@ warning: Duplicate: Schema 'LogicalResource' in central repository being ignored
 warning: Duplicate: Schema 'ResourceSpecificationRef' in central repository being ignored
 warning: Duplicate: Schema 'PhysicalResource' in central repository being ignored
 warning: Duplicate: Schema 'ResourceRelationship' in central repository being ignored
-info: 1: top classifiers: ['Resource', 'LogicalResource', 'PhysicalResource']
+info: 1: top classifiers: ['Resource']
 info: 1: *** All classes ***
 info: 1: class Resource kind: Class where: local
 info: 1: class ResourceCharacteristic kind: Class where: local
@@ -21,5 +21,3 @@ info: 1: class RelatedPartyRef kind: Class where: local
 info: 1: class ResourceRelationship kind: Class where: local
 info: 1: class ResourceRef kind: Class where: local
 info: 1: class ResourceSpecificationRef kind: Class where: local
-info: 1: class LogicalResource kind: Class where: local
-info: 1: class PhysicalResource kind: Class where: local
