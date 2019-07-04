@@ -8,24 +8,6 @@ api 'Resource Inventory Management':
   flavors: regular
   resources:
     - Resource
-  ## LogicalResource
-  rules LogicalResource:
-    operations: GET,POST,PATCH,DELETE
-    mandatory in post: value
-    patchable: ALL EXCEPT href,id
-    notifications:
-      - create
-      - attributeValueChange
-      - delete
-  ## PhysicalResource
-  rules PhysicalResource:
-    operations: GET,POST,PATCH,DELETE
-    mandatory in post: name,serialNumber
-    patchable: ALL EXCEPT href,id
-    notifications:
-      - create
-      - attributeValueChange
-      - delete
   ## Resource
   rules Resource:
     operations: GET,POST,PATCH,DELETE

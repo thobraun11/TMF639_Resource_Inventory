@@ -8,26 +8,6 @@
         "resources": [
             "Resource"
         ],
-        "rules LogicalResource": {
-            "operations": "GET,POST,PATCH,DELETE",
-            "mandatory in post": "value",
-            "patchable": "ALL EXCEPT href,id",
-            "notifications": [
-                "create",
-                "attributeValueChange",
-                "delete"
-            ]
-        },
-        "rules PhysicalResource": {
-            "operations": "GET,POST,PATCH,DELETE",
-            "mandatory in post": "name,serialNumber",
-            "patchable": "ALL EXCEPT href,id",
-            "notifications": [
-                "create",
-                "attributeValueChange",
-                "delete"
-            ]
-        },
         "rules Resource": {
             "operations": "GET,POST,PATCH,DELETE",
             "mandatory in post": "name",

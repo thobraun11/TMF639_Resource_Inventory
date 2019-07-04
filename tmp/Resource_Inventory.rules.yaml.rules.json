@@ -14,51 +14,6 @@
                 ]
             },
             "rules": {
-                "LogicalResource": {
-                    "ANY": {
-                        "operations": [
-                            "GET",
-                            "POST",
-                            "PATCH",
-                            "DELETE"
-                        ],
-                        "mandatory in post": [
-                            "value"
-                        ],
-                        "non patchable": [
-                            "href",
-                            "id"
-                        ],
-                        "notifications": [
-                            "create",
-                            "attributeValueChange",
-                            "delete"
-                        ]
-                    }
-                },
-                "PhysicalResource": {
-                    "ANY": {
-                        "operations": [
-                            "GET",
-                            "POST",
-                            "PATCH",
-                            "DELETE"
-                        ],
-                        "mandatory in post": [
-                            "name",
-                            "serialNumber"
-                        ],
-                        "non patchable": [
-                            "href",
-                            "id"
-                        ],
-                        "notifications": [
-                            "create",
-                            "attributeValueChange",
-                            "delete"
-                        ]
-                    }
-                },
                 "Resource": {
                     "ANY": {
                         "operations": [
