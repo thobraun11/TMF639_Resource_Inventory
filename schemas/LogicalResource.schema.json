@@ -1,25 +1,25 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#", 
-    "$id": "LogicalResource.schema.json", 
-    "title": "LogicalResource", 
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "LogicalResource.schema.json",
+    "title": "LogicalResource",
     "definitions": {
         "LogicalResource": {
-            "type": "object", 
-            "description": "Logic resource is a type of resource that describes the common set of attributes shared by all concrete logical resources (e.g. TPE, MSISDN, IP Addresses) in the inventory.", 
+            "type": "object",
+            "description": "Logic resource is a type of resource that describes the common set of attributes shared by all concrete logical resources (e.g. TPE, MSISDN, IP Addresses) in the inventory.",
             "properties": {
                 "@referredType": {
-                    "type": "string", 
+                    "type": "string",
                     "description": "The actual type of the target instance when needed for disambiguation."
-                }, 
+                },
                 "value": {
-                    "type": "string", 
+                    "type": "string",
                     "description": "the value of the logical resource. E.g '0746712345' for  MSISDN's"
                 }
             },
-             "allOf": [
-                {
-                    "$ref": "../Common/Resouce.schema.json#Resouce"
+            "allOf": [{
+                    "$ref": "../Common/Resource.schema.json#Resource"
                 }
+                ]
+            }
         }
     }
-}

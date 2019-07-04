@@ -1,33 +1,33 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#", 
-    "$id": "ResourceSpecificationRef.schema.json", 
-    "title": "ResourceSpecificationRef", 
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "ResourceSpecificationRef.schema.json",
+    "title": "ResourceSpecificationRef",
     "definitions": {
         "ResourceSpecificationRef": {
-            "type": "object", 
-            "description": "Resource Specification reference: The ResourceSpecification is required to realize a ProductSpecification.", 
+            "type": "object",
+            "description": "Resource Specification reference: The ResourceSpecification is required to realize a ProductSpecification.",
             "properties": {
                 "@referredType": {
-                    "type": "string", 
+                    "type": "string",
                     "description": "The actual type of the target instance when needed for disambiguation."
-                }, 
+                },
                 "href": {
-                    "type": "string", 
+                    "type": "string",
                     "description": "Reference of the resource specification"
-                }, 
+                },
                 "id": {
-                    "type": "string", 
+                    "type": "string",
                     "description": "Unique identifier of the resource specification"
-                }, 
+                },
                 "name": {
-                    "type": "string", 
+                    "type": "string",
                     "description": "Name of the requiredResourceSpecification"
-                }, 
+                },
                 "version": {
-                    "type": "string", 
+                    "type": "string",
                     "description": "Resource specification version"
                 }
-            }, 
+            },
             "allOf": [
                 {
                     "$ref": "Entity.schema.json#/Entity"

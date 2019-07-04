@@ -1,0 +1,141 @@
+@startuml
+hide circle
+hide methods
+hide stereotype
+show <<Enumeration>> stereotype
+skinparam class {
+   BackgroundColor<<Enumeration>> #E6F5F7
+   BackgroundColor<<Ref>> #FFFFE0
+   BackgroundColor<<Pivot>> #FFFFFFF
+   BackgroundColor #FCF2E3
+}
+
+class Resource <<Pivot>> {
+    id : String
+    href : String
+    category : String
+    description : String
+    endOperatingDate : DateTime
+    lifecycleState : String
+    name : String
+    startOperatingDate : DateTime
+    version : String
+    @baseType : String
+    @schemaLocation : Uri
+    @type : String
+}
+
+class ResourceCharacteristic {
+    name : String
+    value : String
+    @baseType : String
+    @schemaLocation : Uri
+    @type : String
+}
+
+class Note {
+    author : String
+    date : DateTime
+    text : String
+    @baseType : String
+    @schemaLocation : Uri
+    @type : String
+}
+
+class PartyRoleRef <<Ref>> {
+    id : String
+    href : String
+    name : String
+    partyId : String
+    partyName : String
+    @baseType : String
+    @schemaLocation : Uri
+    @type : String
+    @referredType : String
+}
+
+class Place {
+    id : String
+    href : String
+    name : String
+    role : String
+    @baseType : String
+    @schemaLocation : Uri
+    @type : String
+}
+
+class RelatedPartyRef <<Ref>> {
+    id : String
+    href : String
+    name : String
+    role : String
+    @baseType : String
+    @schemaLocation : Uri
+    @type : String
+    @referredType : String
+}
+
+class ResourceRelationship {
+    type : String
+    @baseType : String
+    @schemaLocation : Uri
+    @type : String
+}
+
+class ResourceRef <<Ref>> {
+    id : String
+    href : String
+    @baseType : String
+    @schemaLocation : Uri
+    @type : String
+    @referredType : String
+}
+
+class ResourceSpecificationRef <<Ref>> {
+    id : String
+    href : String
+    name : String
+    version : String
+    @baseType : String
+    @schemaLocation : Uri
+    @type : String
+    @referredType : String
+}
+
+
+'processing edges for Resource
+Note "0..*" <-left-* Resource : note
+' rule: L01
+Resource *-right-> "0..*" ResourceCharacteristic : characteristic
+' rule: R03
+PartyRoleRef "0..*" <--* Resource : partyRole
+' rule: General above rule - direction: right
+Place "0..1" <--* Resource : place
+' rule: General above rule - direction: right
+RelatedPartyRef "0..*" <--* Resource : relatedParty
+' rule: General above rule - direction: right
+Resource *-->  "0..*" ResourceRelationship : resourceRelationship
+' rule: General below rule - either none already or unable to place left / right of currently placed
+Resource *-->  "0..1" ResourceSpecificationRef : resourceSpecification
+' rule: General below rule - either none already or unable to place left / right of currently placed
+'completed processing of edges for Resource
+
+'processing edges for ResourceCharacteristic
+
+'processing edges for Note
+
+'processing edges for PartyRoleRef
+
+'processing edges for Place
+
+'processing edges for RelatedPartyRef
+
+'processing edges for ResourceRelationship
+ResourceRelationship *-->  "0..1" ResourceRef : resourceRef
+' rule: General below rule - either none already or unable to place left / right of currently placed
+'completed processing of edges for ResourceRelationship
+
+'processing edges for ResourceRef
+
+'processing edges for ResourceSpecificationRef
+@enduml

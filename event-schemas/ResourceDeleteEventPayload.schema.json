@@ -1,14 +1,14 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#", 
-    "$id": "ResourceDeleteEventPayload.schema.json", 
-    "title": "ResourceDeleteEventPayload", 
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "ResourceDeleteEventPayload.schema.json",
+    "title": "ResourceDeleteEventPayload",
     "definitions": {
         "ResourceDeleteEventPayload": {
-            "type": "object", 
-            "description": "The event data structure", 
+            "type": "object",
+            "description": "The event data structure",
             "properties": {
                 "resource": {
-                    "description": "The involved resource data for the event", 
+                    "description": "The involved resource data for the event",
                     "$ref": "Resource.schema.json#Resource"
                 }
             }

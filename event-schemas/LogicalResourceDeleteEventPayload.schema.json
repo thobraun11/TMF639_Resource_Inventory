@@ -1,14 +1,14 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#", 
-    "$id": "LogicalResourceDeleteEventPayload.schema.json", 
-    "title": "LogicalResourceDeleteEventPayload", 
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "LogicalResourceDeleteEventPayload.schema.json",
+    "title": "LogicalResourceDeleteEventPayload",
     "definitions": {
         "LogicalResourceDeleteEventPayload": {
-            "type": "object", 
-            "description": "The event data structure", 
+            "type": "object",
+            "description": "The event data structure",
             "properties": {
                 "logicalResource": {
-                    "description": "The involved resource data for the event", 
+                    "description": "The involved resource data for the event",
                     "$ref": "LogicalResource.schema.json#LogicalResource"
                 }
             }

@@ -1,84 +1,84 @@
 {
     "apis": {
         "Resource Inventory Management": {
-            "doc": "This is Swagger UI environment generated for the TMF Resource Inventory Management specification", 
-            "hostUrl": "https://serverRoot", 
-            "basePath": "/tmf-api/resourceInventoryManagement/v4/", 
-            "version": "4.0", 
+            "doc": "This is Swagger UI environment generated for the TMF Resource Inventory Management specification",
+            "hostUrl": "https://serverRoot",
+            "basePath": "/tmf-api/resourceInventoryManagement/v4/",
+            "version": "4.0",
             "flavors": [
                 "regular"
-            ], 
+            ],
             "resources": {
                 "ANY": [
-                    "LogicalResource", 
-                    "PhysicalResource", 
+                    "LogicalResource",
+                    "PhysicalResource",
                     "Resource"
                 ]
-            }, 
+            },
             "rules": {
                 "LogicalResource": {
                     "ANY": {
                         "operations": [
-                            "GET", 
-                            "POST", 
-                            "PATCH", 
+                            "GET",
+                            "POST",
+                            "PATCH",
                             "DELETE"
-                        ], 
+                        ],
                         "mandatory in post": [
                             "value"
-                        ], 
+                        ],
                         "non patchable": [
-                            "href", 
+                            "href",
                             "id"
-                        ], 
+                        ],
                         "notifications": [
-                            "create", 
-                            "attributeValueChange", 
+                            "create",
+                            "attributeValueChange",
                             "delete"
                         ]
                     }
-                }, 
-                "Resource": {
-                    "ANY": {
-                        "operations": [
-                            "GET", 
-                            "POST", 
-                            "PATCH", 
-                            "DELETE"
-                        ], 
-                        "mandatory in post": [
-                            "name"
-                        ], 
-                        "non patchable": [
-                            "href", 
-                            "id"
-                        ], 
-                        "notifications": [
-                            "create", 
-                            "attributeValueChange", 
-                            "delete"
-                        ]
-                    }
-                }, 
+                },
                 "PhysicalResource": {
                     "ANY": {
                         "operations": [
-                            "GET", 
-                            "POST", 
-                            "PATCH", 
+                            "GET",
+                            "POST",
+                            "PATCH",
                             "DELETE"
-                        ], 
+                        ],
                         "mandatory in post": [
-                            "name", 
+                            "name",
                             "serialNumber"
-                        ], 
+                        ],
                         "non patchable": [
-                            "href", 
+                            "href",
                             "id"
-                        ], 
+                        ],
                         "notifications": [
-                            "create", 
-                            "attributeValueChange", 
+                            "create",
+                            "attributeValueChange",
+                            "delete"
+                        ]
+                    }
+                },
+                "Resource": {
+                    "ANY": {
+                        "operations": [
+                            "GET",
+                            "POST",
+                            "PATCH",
+                            "DELETE"
+                        ],
+                        "mandatory in post": [
+                            "name"
+                        ],
+                        "non patchable": [
+                            "href",
+                            "id"
+                        ],
+                        "notifications": [
+                            "create",
+                            "attributeValueChange",
                             "delete"
                         ]
                     }
