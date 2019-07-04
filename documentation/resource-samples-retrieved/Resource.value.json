@@ -1,0 +1,28 @@
+{
+    "category": "a string ...",
+    "characteristic": [
+        {}
+    ],
+    "description": "This  resource ...",
+    "endOperatingDate": "2019-07-04T00:00",
+    "href": "https:/host:port/tmf-api/resource/v1/resource/6726",
+    "id": "6726",
+    "lifecycleState": "a string ...",
+    "name": "a string ...",
+    "note": [
+        {}
+    ],
+    "partyRole": [
+        {}
+    ],
+    "place": {},
+    "relatedParty": [
+        {}
+    ],
+    "resourceRelationship": [
+        {}
+    ],
+    "resourceSpecification": {},
+    "startOperatingDate": "2019-07-04T00:00",
+    "version": "a string ..."
+}
