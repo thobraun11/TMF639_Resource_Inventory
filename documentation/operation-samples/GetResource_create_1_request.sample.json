@@ -1,0 +1,8 @@
+{
+  "resource": {
+    "id": "444",
+    "href": "https://host:port/resource/v1/resource?LogicalResource=444",
+    "@referredType": "Resource"
+  },
+  "@type": "getResource"
+}

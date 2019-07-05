@@ -1,0 +1,56 @@
+{
+    "ResourceInventory": {
+        "list": {
+            "samples": [
+                {
+                    "description": "Here's an example of a request for retrieving a list of Resource(s). The given criteria is the category (B2C) and state (held).",
+                    "filtering": "fields=id,href,expectedCompletionDate&category=B2C&state=held", 
+                    "content-type": "application/json", 
+                    "response" : "$_GetResource_list_1_response"
+                }
+            ]
+        }, 
+        "retrieve": {
+            "samples" : [
+                {
+                    "description": "Here's an example of a request for retrieving a resource for use case 1. The given criteria is the Resource  id 444.",
+                    "content-type": "application/json",
+                    "objectId": "444",  
+                    "response" : "$_Resource_retrieve_1_response"
+                },
+                {
+                    "description": "Here's an example of a request for retrieving a resource for use case 2. The given criteria is the resource id 444.",
+                    "content-type": "application/json", 
+                    "objectId": "87g-8tt",
+                    "response" : "$_Resource_Retrieve_2_response"
+                }		
+            ]
+        }, 
+        "create": {
+         "samples:" : [
+            {
+                "description" : "Here's an example of a request for creating a resource for use case 1 - the resulting resource is 444.",
+                "request" : "$_Resource_create_1_request",
+                "response" : "$_Resource_create_1_response"
+            } 
+         ]   
+        },
+        "partialupdate": {
+            "samples:" : [
+               {
+                   "description" : "Here's an example of a request for updating a resource for use case 1 - Change value for billing account id.",
+                   "request" : "$_Resource_partialupdate_1_request",
+                   "response" : "$_Resource_partialupdate_1_response"
+               } 
+            ]   
+           },
+        "delete": {
+	        "samples" : [
+		        {
+		             "description": "Here's an example of a request for deleting a resource.",
+		             "objectId" : "444"
+	        	}
+	       ]
+    	}
+    }
+}
