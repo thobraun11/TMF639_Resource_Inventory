@@ -749,6 +749,44 @@
         }
     },
     "definitions": {
+        "EntityRef": {
+            "type": "object",
+            "description": "Entity reference schema to be use for all entityRef class.",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier of a related entity."
+                },
+                "href": {
+                    "type": "string",
+                    "description": "Reference of the related entity."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the related entity."
+                },
+                "@baseType": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the super-class"
+                },
+                "@schemaLocation": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "A URI to a JSON-Schema file that defines additional attributes and relationships"
+                },
+                "@type": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the sub-class entity name"
+                },
+                "@referredType": {
+                    "type": "string",
+                    "description": "The actual type of the target instance when needed for disambiguation."
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
         "Note": {
             "type": "object",
             "description": "Extra information about a given entity",
@@ -831,30 +869,21 @@
                 }
             }
         },
-        "Place": {
+        "PlaceRef": {
             "type": "object",
-            "description": "Place reference. Place defines the places where the products are sold or delivered.",
-            "required": [
-                "href",
-                "id",
-                "role"
-            ],
+            "description": "Place reference. PlaceRef defines the placeRefs where the products are sold or delivered.",
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "Unique identifier of the place"
+                    "description": "Unique identifier of a related entity."
                 },
                 "href": {
                     "type": "string",
-                    "description": "Unique reference of the place"
+                    "description": "Reference of the related entity."
                 },
                 "name": {
                     "type": "string",
-                    "description": "A user-friendly name for the place, such as \"Paris Store\", \"London Store\", \"Main Home\""
-                },
-                "role": {
-                    "type": "string",
-                    "description": "Role of the place (for instance: 'home delivery', 'shop retrieval')"
+                    "description": "Name of the related entity."
                 },
                 "@baseType": {
                     "type": "string",
@@ -868,8 +897,15 @@
                 "@type": {
                     "type": "string",
                     "description": "When sub-classing, this defines the sub-class entity name"
+                },
+                "@referredType": {
+                    "type": "string",
+                    "description": "The actual type of the target instance when needed for disambiguation."
                 }
-            }
+            },
+            "required": [
+                "id"
+            ]
         },
         "RelatedPartyRef": {
             "type": "object",
@@ -941,10 +977,6 @@
                     "format": "date-time",
                     "description": "A date time( DateTime). The date till the resource is operating"
                 },
-                "lifecycleState": {
-                    "type": "string",
-                    "description": "The life cycle state of the resource."
-                },
                 "name": {
                     "type": "string",
                     "description": "A string used to give a name to the resource"
@@ -964,6 +996,10 @@
                         "$ref": "#/definitions/ResourceCharacteristic"
                     }
                 },
+                "lifecycleState": {
+                    "$ref": "#/definitions/ResourceLifecycleStateType",
+                    "description": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
+                },
                 "note": {
                     "type": "array",
                     "items": {
@@ -977,7 +1013,7 @@
                     }
                 },
                 "place": {
-                    "$ref": "#/definitions/Place"
+                    "$ref": "#/definitions/PlaceRef"
                 },
                 "relatedParty": {
                     "type": "array",
@@ -1029,10 +1065,6 @@
                     "format": "date-time",
                     "description": "A date time( DateTime). The date till the resource is operating"
                 },
-                "lifecycleState": {
-                    "type": "string",
-                    "description": "The life cycle state of the resource."
-                },
                 "name": {
                     "type": "string",
                     "description": "A string used to give a name to the resource"
@@ -1052,6 +1084,10 @@
                         "$ref": "#/definitions/ResourceCharacteristic"
                     }
                 },
+                "lifecycleState": {
+                    "$ref": "#/definitions/ResourceLifecycleStateType",
+                    "description": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
+                },
                 "note": {
                     "type": "array",
                     "items": {
@@ -1065,7 +1101,7 @@
                     }
                 },
                 "place": {
-                    "$ref": "#/definitions/Place"
+                    "$ref": "#/definitions/PlaceRef"
                 },
                 "relatedParty": {
                     "type": "array",
@@ -1117,10 +1153,6 @@
                     "format": "date-time",
                     "description": "A date time( DateTime). The date till the resource is operating"
                 },
-                "lifecycleState": {
-                    "type": "string",
-                    "description": "The life cycle state of the resource."
-                },
                 "name": {
                     "type": "string",
                     "description": "A string used to give a name to the resource"
@@ -1140,6 +1172,10 @@
                         "$ref": "#/definitions/ResourceCharacteristic"
                     }
                 },
+                "lifecycleState": {
+                    "$ref": "#/definitions/ResourceLifecycleStateType",
+                    "description": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
+                },
                 "note": {
                     "type": "array",
                     "items": {
@@ -1153,7 +1189,7 @@
                     }
                 },
                 "place": {
-                    "$ref": "#/definitions/Place"
+                    "$ref": "#/definitions/PlaceRef"
                 },
                 "relatedParty": {
                     "type": "array",

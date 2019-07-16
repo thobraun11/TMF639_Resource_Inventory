@@ -1,22 +1,28 @@
-warning: Duplicate: Schema 'Place' in central repository being ignored
+warning: Duplicate: Schema 'ResourceLifecyleStateType' in central repository being ignored
 warning: Duplicate: Schema 'Note' in central repository being ignored
+warning: Duplicate: Schema 'Place' in central repository being ignored
 warning: Duplicate: Schema 'PartyRoleRef' in central repository being ignored
 warning: Duplicate: Schema 'RelatedPartyRef' in central repository being ignored
 warning: Duplicate: Schema 'ProductOfferingQualificationItemRef' in central repository being ignored
-warning: Duplicate: Schema 'ResourceRef' in central repository being ignored
+warning: Duplicate: Schema 'LogicalResource' in central repository being ignored
+warning: Duplicate: Schema 'PhysicalResource' in central repository being ignored
 warning: Duplicate: Schema 'Resource' in central repository being ignored
 warning: Duplicate: Schema 'ResourceCharacteristic' in central repository being ignored
-warning: Duplicate: Schema 'LogicalResource' in central repository being ignored
-warning: Duplicate: Schema 'ResourceSpecificationRef' in central repository being ignored
-warning: Duplicate: Schema 'PhysicalResource' in central repository being ignored
+warning: Duplicate: Schema 'ResourceRef' in central repository being ignored
 warning: Duplicate: Schema 'ResourceRelationship' in central repository being ignored
+warning: Duplicate: Schema 'ResourceSpecificationRef' in central repository being ignored
+error: NotFound: filenot found: C:\Users\A1169097\Artei\Artei\OpenAPITeam\gitws\schemas\ResourceLifecycleStateType.schema.json
+error: NotFound: filenot found: C:\Users\A1169097\Artei\Artei\OpenAPITeam\gitws\schemas\ResourceLifecycleStateType.yaml
+error: NotFound: Could not load schema for 'ResourceLifecycleStateType'
+error: NotFound: For 'Resource' could not load dependent 'ResourceLifecycleStateType'
 info: 1: top classifiers: ['Resource']
 info: 1: *** All classes ***
 info: 1: class Resource kind: Class where: local
 info: 1: class ResourceCharacteristic kind: Class where: local
 info: 1: class Note kind: Class where: local
 info: 1: class PartyRoleRef kind: Class where: local
-info: 1: class Place kind: Class where: local
+info: 1: class PlaceRef kind: Class where: central
+info: 1: class EntityRef kind: Class where: central
 info: 1: class RelatedPartyRef kind: Class where: local
 info: 1: class ResourceRelationship kind: Class where: local
 info: 1: class ResourceRef kind: Class where: local

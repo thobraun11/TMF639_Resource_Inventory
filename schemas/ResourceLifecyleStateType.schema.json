@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#", 
+    "$id": "ResourceLifecyleStateType.schema.json", 
+    "title": "ResourceLifecycleStateType", 
+    "definitions": {
+        "ResourceLifecycleStateType": {
+	  "id": "#ResourceLifecycleState
+            "type": "string", 
+            "description": "ResourceLifecycleState enumerations", 
+            "enum": [
+                "planning", 
+                "installing", 
+                "operating", 
+                "retiring"
+            ]
+        }
+    }
+}

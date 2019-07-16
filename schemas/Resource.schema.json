@@ -35,8 +35,8 @@
                     "description": "Identifier of an instance of the resource. Required to be unique within the resource type.  Used in URIs as the identifier for specific instances of a type."
                 }, 
                 "lifecycleState": {
-                    "type": "string", 
-                    "description": "The life cycle state of the resource."
+                    "$ref": "ResourceLifecycleStateType.schema.json#ResourceLifecycleStateType",
+                    "description": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
                 }, 
                 "name": {
                     "type": "string", 
@@ -55,7 +55,7 @@
                     }
                 }, 
                 "place": {
-                    "$ref": "Place.schema.json#/definitions/Place"
+                    "$ref": "PlaceRef.schema.json#/definitions/PlaceRef"
                 }, 
                 "relatedParty": {
                     "type": "array", 

@@ -10,9 +10,10 @@
     ],
     "eventResources": [],
     "usedClassesInRegularApi": [
+        "EntityRef",
         "Note",
         "PartyRoleRef",
-        "Place",
+        "PlaceRef",
         "RelatedPartyRef",
         "Resource",
         "ResourceCharacteristic",
@@ -86,9 +87,9 @@
                     "documentation": "Identifier of an instance of the resource. Required to be unique within the resource type.  Used in URIs as the identifier for specific instances of a type."
                 },
                 "lifecycleState": {
-                    "type": "String",
+                    "type": "ResourceLifecycleStateType",
                     "multiplicity": "0..1",
-                    "documentation": "The life cycle state of the resource."
+                    "documentation": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
                 },
                 "name": {
                     "type": "String",
@@ -106,9 +107,9 @@
                     "documentation": "Party role reference. A party role represents the part played by a party in a given context."
                 },
                 "place": {
-                    "type": "Place",
+                    "type": "PlaceRef",
                     "multiplicity": "0..1",
-                    "documentation": "Place reference. Place defines the places where the products are sold or delivered."
+                    "documentation": "Place reference. PlaceRef defines the placeRefs where the products are sold or delivered."
                 },
                 "relatedParty": {
                     "type": "RelatedPartyRef",
