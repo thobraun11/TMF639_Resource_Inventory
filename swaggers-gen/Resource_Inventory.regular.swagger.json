@@ -676,6 +676,77 @@
                 }
             }
         },
+        "/listener/resourceStateChangeEvent": {
+            "post": {
+                "operationId": "listenToResourceStateChangeEvent",
+                "summary": "Client listener for entity ResourceStateChangeEvent",
+                "description": "Example of a client listener for receiving the notification ResourceStateChangeEvent",
+                "tags": [
+                    "notification listeners (client side)"
+                ],
+                "parameters": [
+                    {
+                        "name": "data",
+                        "required": true,
+                        "in": "body",
+                        "description": "The event data",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceStateChangeEvent"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Notified",
+                        "schema": {
+                            "$ref": "#/definitions/EventSubscription"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not allowed",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
         "/listener/resourceDeleteEvent": {
             "post": {
                 "operationId": "listenToResourceDeleteEvent",
@@ -1259,6 +1330,37 @@
                 }
             }
         },
+        "ResourceLifecycleStateType": {
+            "type": "string",
+            "description": "ResourceLifecycleStateType enumerations",
+            "enum": [
+                "planning",
+                "installing",
+                "operating",
+                "retiring"
+            ]
+        },
+        "ResourceLifecycleSubStateType": {
+            "type": "string",
+            "description": "ResourceLifecycleSubStateType enumerations",
+            "enum": [
+                "proposed",
+                "feasibility checked",
+                "designed",
+                "ordered",
+                "activated",
+                "deactivated",
+                "working",
+                "working meets all SLAs",
+                "working meets some SLAs",
+                "working meets no SLA",
+                "not working",
+                "available",
+                "not available",
+                "assigned",
+                "reserved"
+            ]
+        },
         "ResourceRef": {
             "type": "object",
             "properties": {
@@ -1515,6 +1617,72 @@
             }
         },
         "ResourceAttributeValueChangeEventPayload": {
+            "type": "object",
+            "description": "The event data structure",
+            "properties": {
+                "resource": {
+                    "description": "The involved resource data for the event",
+                    "$ref": "#/definitions/Resource"
+                }
+            }
+        },
+        "ResourceStateChangeEvent": {
+            "type": "object",
+            "description": "The notification data structure",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Identifier of the Process flow"
+                },
+                "href": {
+                    "type": "string",
+                    "description": "Reference of the ProcessFlow"
+                },
+                "eventId": {
+                    "type": "string",
+                    "description": "The identifier of the notification."
+                },
+                "eventTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Time of the event occurrence."
+                },
+                "eventType": {
+                    "type": "string",
+                    "description": "The type of the notification."
+                },
+                "correlationId": {
+                    "type": "string",
+                    "description": "The correlation id for this event."
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "The domain of the event."
+                },
+                "title": {
+                    "type": "string",
+                    "description": "The title of the event."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "An explnatory of the event."
+                },
+                "priority": {
+                    "type": "string",
+                    "description": "A priority."
+                },
+                "timeOcurred": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "The time the event occured."
+                },
+                "event": {
+                    "description": "The event payload linked to the involved resource object",
+                    "$ref": "#/definitions/ResourceStateChangeEventPayload"
+                }
+            }
+        },
+        "ResourceStateChangeEventPayload": {
             "type": "object",
             "description": "The event data structure",
             "properties": {

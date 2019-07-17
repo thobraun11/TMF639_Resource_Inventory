@@ -17,6 +17,8 @@
         "RelatedPartyRef",
         "Resource",
         "ResourceCharacteristic",
+        "ResourceLifecycleStateType",
+        "ResourceLifecycleSubStateType",
         "ResourceRef",
         "ResourceRelationship",
         "ResourceSpecificationRef"
@@ -90,11 +92,34 @@
                 "lifecycleState": {
                     "type": "ResourceLifecycleStateType",
                     "multiplicity": "0..1",
+                    "enumValues": [
+                        "planning",
+                        "installing",
+                        "operating",
+                        "retiring"
+                    ],
                     "documentation": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
                 },
                 "lifecycleSubState": {
                     "type": "ResourceLifecycleSubStateType",
                     "multiplicity": "0..1",
+                    "enumValues": [
+                        "proposed",
+                        "feasibility checked",
+                        "designed",
+                        "ordered",
+                        "activated",
+                        "deactivated",
+                        "working",
+                        "working meets all SLAs",
+                        "working meets some SLAs",
+                        "working meets no SLA",
+                        "not working",
+                        "available",
+                        "not available",
+                        "assigned",
+                        "reserved"
+                    ],
                     "documentation": "Tracks the lifecyclesubstate of the resource, e.g for lifecycleState:Planning subState: proposed, feasibility checked,..,for lifecycleState: Operating subState: activated, deactivated, working, not working,.. and so on."
                 },
                 "name": {
@@ -187,6 +212,7 @@
                 "notifications": [
                     "create",
                     "attributeValueChange",
+                    "stateChange",
                     "delete"
                 ]
             }
@@ -209,18 +235,21 @@
         "allEventResources": [
             "ResourceCreateEvent",
             "ResourceAttributeValueChangeEvent",
+            "ResourceStateChangeEvent",
             "ResourceDeleteEvent"
         ],
         "eventNotifications": {
             "Resource": [
                 "create",
                 "attributeValueChange",
+                "stateChange",
                 "delete"
             ]
         },
         "eventTargetClasses": {
             "ResourceCreateEvent": "Resource",
             "ResourceAttributeValueChangeEvent": "Resource",
+            "ResourceStateChangeEvent": "Resource",
             "ResourceDeleteEvent": "Resource"
         }
     },
@@ -256,6 +285,7 @@
                     "notifications": [
                         "create",
                         "attributeValueChange",
+                        "stateChange",
                         "delete"
                     ]
                 }

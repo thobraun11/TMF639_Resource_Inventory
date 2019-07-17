@@ -32,6 +32,7 @@
                         "notifications": [
                             "create",
                             "attributeValueChange",
+                            "stateChange",
                             "delete"
                         ]
                     }
