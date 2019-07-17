@@ -4,7 +4,7 @@
     "title": "ResourceLifecycleStateType", 
     "definitions": {
         "ResourceLifecycleStateType": {
-	  "id": "#ResourceLifecycleState
+	  "id": "#ResourceLifecycleState",
             "type": "string", 
             "description": "ResourceLifecycleState enumerations", 
             "enum": [

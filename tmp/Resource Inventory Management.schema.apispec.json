@@ -187,6 +187,7 @@
                 "notifications": [
                     "create",
                     "attributeValueChange",
+                    "stateChange",
                     "delete"
                 ]
             }
@@ -209,18 +210,21 @@
         "allEventResources": [
             "ResourceCreateEvent",
             "ResourceAttributeValueChangeEvent",
+            "ResourceStateChangeEvent",
             "ResourceDeleteEvent"
         ],
         "eventNotifications": {
             "Resource": [
                 "create",
                 "attributeValueChange",
+                "stateChange",
                 "delete"
             ]
         },
         "eventTargetClasses": {
             "ResourceCreateEvent": "Resource",
             "ResourceAttributeValueChangeEvent": "Resource",
+            "ResourceStateChangeEvent": "Resource",
             "ResourceDeleteEvent": "Resource"
         }
     },
@@ -256,6 +260,7 @@
                     "notifications": [
                         "create",
                         "attributeValueChange",
+                        "stateChange",
                         "delete"
                     ]
                 }

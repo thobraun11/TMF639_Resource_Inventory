@@ -9,7 +9,7 @@
     ],
     "description": "This  resource is the Logical Resource MSISDN.",
     "endOperatingDate": "2019-07-04T00:00",
-    "href": "https:/host:port/tmf-api/resource/v1/resource/42",
+    "href": "https:/host:port/tmf-api/resource/v1/resource?LogicalResource=444,
     "id": "444",
     "lifecycleState": "Available",
     "name": "07465233456",
