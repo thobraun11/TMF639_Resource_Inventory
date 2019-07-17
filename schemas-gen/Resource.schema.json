@@ -38,6 +38,10 @@
                     "$ref": "ResourceLifecycleStateType.schema.json#/definitions/ResourceLifecycleStateType",
                     "description": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
                 },
+                "lifecycleSubState": {
+                    "$ref": "ResourceLifecycleSubStateType.schema.json#/definitions/ResourceLifecycleSubStateType",
+                    "description": "Tracks the lifecyclesubstate of the resource, e.g for lifecycleState:Planning subState: proposed, feasibility checked,..,for lifecycleState: Operating subState: activated, deactivated, working, not working,.. and so on."
+                },
                 "name": {
                     "type": "string",
                     "description": "A string used to give a name to the resource"

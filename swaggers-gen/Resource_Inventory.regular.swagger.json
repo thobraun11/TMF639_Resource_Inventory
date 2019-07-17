@@ -1000,6 +1000,10 @@
                     "$ref": "#/definitions/ResourceLifecycleStateType",
                     "description": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
                 },
+                "lifecycleSubState": {
+                    "$ref": "#/definitions/ResourceLifecycleSubStateType",
+                    "description": "Tracks the lifecyclesubstate of the resource, e.g for lifecycleState:Planning subState: proposed, feasibility checked,..,for lifecycleState: Operating subState: activated, deactivated, working, not working,.. and so on."
+                },
                 "note": {
                     "type": "array",
                     "items": {
@@ -1088,6 +1092,10 @@
                     "$ref": "#/definitions/ResourceLifecycleStateType",
                     "description": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
                 },
+                "lifecycleSubState": {
+                    "$ref": "#/definitions/ResourceLifecycleSubStateType",
+                    "description": "Tracks the lifecyclesubstate of the resource, e.g for lifecycleState:Planning subState: proposed, feasibility checked,..,for lifecycleState: Operating subState: activated, deactivated, working, not working,.. and so on."
+                },
                 "note": {
                     "type": "array",
                     "items": {
@@ -1175,6 +1183,10 @@
                 "lifecycleState": {
                     "$ref": "#/definitions/ResourceLifecycleStateType",
                     "description": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
+                },
+                "lifecycleSubState": {
+                    "$ref": "#/definitions/ResourceLifecycleSubStateType",
+                    "description": "Tracks the lifecyclesubstate of the resource, e.g for lifecycleState:Planning subState: proposed, feasibility checked,..,for lifecycleState: Operating subState: activated, deactivated, working, not working,.. and so on."
                 },
                 "note": {
                     "type": "array",

@@ -1,84 +1,88 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#", 
-    "$id": "Resource.schema.json", 
-    "title": "Resource", 
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "Resource.schema.json",
+    "title": "Resource",
     "definitions": {
         "Resource": {
-            "type": "object", 
-            "description": "Resource is an abstract entity that describes the common set of attributes shared by all concrete resources (e.g. TPE, EQUIPMENT) in the inventory.", 
+            "type": "object",
+            "description": "Resource is an abstract entity that describes the common set of attributes shared by all concrete resources (e.g. TPE, EQUIPMENT) in the inventory.",
             "properties": {
                 "category": {
-                    "type": "string", 
+                    "type": "string",
                     "description": "Category of the concrete resource. e.g Gold, Silver for MSISDN concrete resource"
-                }, 
+                },
                 "characteristic": {
-                    "type": "array", 
+                    "type": "array",
                     "items": {
                         "$ref": "ResourceCharacteristic.schema.json#/definitions/ResourceCharacteristic"
                     }
-                }, 
+                },
                 "description": {
-                    "type": "string", 
+                    "type": "string",
                     "description": "free-text description of the resource"
-                }, 
+                },
                 "endOperatingDate": {
-                    "type": "string", 
-                    "format": "date-time", 
+                    "type": "string",
+                    "format": "date-time",
                     "description": "A date time( DateTime). The date till the resource is operating"
-                }, 
+                },
                 "href": {
-                    "type": "string", 
+                    "type": "string",
                     "description": "The URI for the object itself."
-                }, 
+                },
                 "id": {
-                    "type": "string", 
+                    "type": "string",
                     "description": "Identifier of an instance of the resource. Required to be unique within the resource type.  Used in URIs as the identifier for specific instances of a type."
-                }, 
+                },
                 "lifecycleState": {
                     "$ref": "ResourceLifecycleStateType.schema.json#ResourceLifecycleStateType",
                     "description": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
-                }, 
+                },
+	         "lifecycleSubState": {
+                    "$ref": "ResourceLifecycleSubStateType.schema.json#ResourceLifecycleSubStateType",
+                    "description": "Tracks the lifecyclesubstate of the resource, e.g for lifecycleState:Planning subState: proposed, feasibility checked,..,for lifecycleState: Operating subState: activated, deactivated, working, not working,.. and so on."
+                },
                 "name": {
-                    "type": "string", 
+                    "type": "string",
                     "description": "A string used to give a name to the resource"
-                }, 
+                },
                 "note": {
-                    "type": "array", 
+                    "type": "array",
                     "items": {
                         "$ref": "Note.schema.json#/definitions/Note"
                     }
-                }, 
+                },
                 "partyRole": {
-                    "type": "array", 
+                    "type": "array",
                     "items": {
                         "$ref": "PartyRoleRef.schema.json#/definitions/PartyRoleRef"
                     }
-                }, 
+                },
                 "place": {
                     "$ref": "PlaceRef.schema.json#/definitions/PlaceRef"
-                }, 
+                },
                 "relatedParty": {
-                    "type": "array", 
+                    "type": "array",
                     "items": {
                         "$ref": "RelatedPartyRef.schema.json#/definitions/RelatedPartyRef"
                     }
-                }, 
+                },
                 "resourceRelationship": {
-                    "type": "array", 
+                    "type": "array",
                     "items": {
                         "$ref": "ResourceRelationship.schema.json#/definitions/ResourceRelationship"
                     }
-                }, 
+                },
                 "resourceSpecification": {
                     "$ref": "ResourceSpecificationRef.schema.json#/definitions/ResourceSpecificationRef"
-                }, 
+                },
                 "startOperatingDate": {
-                    "type": "string", 
-                    "format": "date-time", 
+                    "type": "string",
+                    "format": "date-time",
                     "description": "A date time( DateTime). The date from which the resource is operating"
-                }, 
+                },
                 "version": {
-                    "type": "string", 
+                    "type": "string",
                     "description": "A field that identifies the specific version of an instance of a resource."
                 }
             },

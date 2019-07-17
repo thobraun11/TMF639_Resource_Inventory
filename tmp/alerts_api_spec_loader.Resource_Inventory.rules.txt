@@ -15,6 +15,10 @@ error: NotFound: filenot found: C:\Users\A1169097\Artei\Artei\OpenAPITeam\gitws\
 error: NotFound: filenot found: C:\Users\A1169097\Artei\Artei\OpenAPITeam\gitws\schemas\ResourceLifecycleStateType.yaml
 error: NotFound: Could not load schema for 'ResourceLifecycleStateType'
 error: NotFound: For 'Resource' could not load dependent 'ResourceLifecycleStateType'
+error: NotFound: filenot found: C:\Users\A1169097\Artei\Artei\OpenAPITeam\gitws\schemas\ResourceLifecycleSubStateType.schema.json
+error: NotFound: filenot found: C:\Users\A1169097\Artei\Artei\OpenAPITeam\gitws\schemas\ResourceLifecycleSubStateType.yaml
+error: NotFound: Could not load schema for 'ResourceLifecycleSubStateType'
+error: NotFound: For 'Resource' could not load dependent 'ResourceLifecycleSubStateType'
 info: 1: top classifiers: ['Resource']
 info: 1: *** All classes ***
 info: 1: class Resource kind: Class where: local

@@ -16,10 +16,11 @@ class Resource <<Pivot>> {
     category : String
     description : String
     endOperatingDate : DateTime
-    lifecycleState : String
     name : String
     startOperatingDate : DateTime
     version : String
+    lifecycleState : ResourceLifecycleStateType
+    lifecycleSubState : ResourceLifecycleSubStateType
     @baseType : String
     @schemaLocation : Uri
     @type : String
@@ -54,14 +55,14 @@ class PartyRoleRef <<Ref>> {
     @referredType : String
 }
 
-class Place {
+class PlaceRef <<Ref>> {
     id : String
     href : String
     name : String
-    role : String
     @baseType : String
     @schemaLocation : Uri
     @type : String
+    @referredType : String
 }
 
 class RelatedPartyRef <<Ref>> {
@@ -110,7 +111,7 @@ Resource *-right-> "0..*" ResourceCharacteristic : characteristic
 ' rule: R03
 PartyRoleRef "0..*" <--* Resource : partyRole
 ' rule: General above rule - direction: right
-Place "0..1" <--* Resource : place
+PlaceRef "0..1" <--* Resource : place
 ' rule: General above rule - direction: right
 RelatedPartyRef "0..*" <--* Resource : relatedParty
 ' rule: General above rule - direction: right
@@ -126,7 +127,7 @@ Resource *-->  "0..1" ResourceSpecificationRef : resourceSpecification
 
 'processing edges for PartyRoleRef
 
-'processing edges for Place
+'processing edges for PlaceRef
 
 'processing edges for RelatedPartyRef
 

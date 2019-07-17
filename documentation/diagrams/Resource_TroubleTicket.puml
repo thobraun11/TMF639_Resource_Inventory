@@ -1,0 +1,140 @@
+@startuml
+hide circle
+hide methods
+hide stereotype
+show <<Enumeration>> stereotype
+skinparam class {
+   BackgroundColor<<Enumeration>> #E6F5F7
+   BackgroundColor<<Ref>> #FFFFE0
+   BackgroundColor<<Pivot>> #FFFFFFF
+   BackgroundColor #FCF2E3
+}
+
+class TroubleTicket <<Pivot>> {
+    id : String
+    href : String
+    creationDate : DateTime
+    description : String
+    expectedResolutionDate : DateTime
+    externalId : String
+    lastUpdate : DateTime
+    name : String
+    priority : String
+    requestedResolutionDate : DateTime
+    resolutionDate : DateTime
+    severity : String
+    status : String
+    statusChangeDate : DateTime
+    statusChangeReason : String
+    ticketType : String
+    @baseType : String
+    @schemaLocation : Uri
+    @type : String
+}
+
+class Attachment {
+    id : String
+    href : String
+    attachmentType : String
+    description : String
+    mimeType : String
+    name : String
+    url : String
+    size : Quantity
+    validFor : TimePeriod
+    @baseType : String
+    @schemaLocation : Uri
+    @type : String
+}
+
+class Channel {
+    id : String
+    href : String
+    name : String
+    @baseType : String
+    @schemaLocation : Uri
+    @type : String
+}
+
+class Note {
+    id : String
+    author : String
+    date : DateTime
+    text : String
+    @baseType : String
+    @schemaLocation : Uri
+    @type : String
+}
+
+class RelatedEntityRef <<Ref>> {
+    id : String
+    href : String
+    name : String
+    role : String
+    @baseType : String
+    @schemaLocation : Uri
+    @type : String
+    @referredType : String
+}
+
+class RelatedPartyRef <<Ref>> {
+    id : String
+    href : String
+    name : String
+    role : String
+    @baseType : String
+    @schemaLocation : Uri
+    @type : String
+    @referredType : Uri
+}
+
+class StatusChange {
+    changeDate : DateTime
+    changeReason : String
+    status : String
+    @baseType : String
+    @schemaLocation : Uri
+    @type : String
+}
+
+class TicketRelationship <<Ref>> {
+    id : String
+    href : String
+    relationshipType : String
+    @baseType : String
+    @schemaLocation : Uri
+    @type : String
+}
+
+
+'processing edges for TroubleTicket
+Attachment "0..*" <-left-* TroubleTicket : attachment
+' rule: L01
+TroubleTicket *-right-> "0..1" Channel : channel
+' rule: R03
+Note "0..*" <--* TroubleTicket : note
+' rule: General above rule - direction: right
+RelatedEntityRef "0..*" <--* TroubleTicket : relatedEntity
+' rule: General above rule - direction: right
+RelatedPartyRef "0..*" <--* TroubleTicket : relatedParty
+' rule: General above rule - direction: right
+TroubleTicket *-->  "0..*" StatusChange : statusChange
+' rule: General below rule - none already below
+TroubleTicket *-->  "0..*" TicketRelationship : ticketRelationship
+' rule: General below rule - none already below
+'completed processing of edges for TroubleTicket
+
+'processing edges for Attachment
+
+'processing edges for Channel
+
+'processing edges for Note
+
+'processing edges for RelatedEntityRef
+
+'processing edges for RelatedPartyRef
+
+'processing edges for StatusChange
+
+'processing edges for TicketRelationship
+@enduml

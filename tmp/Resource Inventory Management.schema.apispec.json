@@ -46,6 +46,7 @@
                 "href",
                 "id",
                 "lifecycleState",
+                "lifecycleSubState",
                 "name",
                 "note",
                 "partyRole",
@@ -90,6 +91,11 @@
                     "type": "ResourceLifecycleStateType",
                     "multiplicity": "0..1",
                     "documentation": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
+                },
+                "lifecycleSubState": {
+                    "type": "ResourceLifecycleSubStateType",
+                    "multiplicity": "0..1",
+                    "documentation": "Tracks the lifecyclesubstate of the resource, e.g for lifecycleState:Planning subState: proposed, feasibility checked,..,for lifecycleState: Operating subState: activated, deactivated, working, not working,.. and so on."
                 },
                 "name": {
                     "type": "String",

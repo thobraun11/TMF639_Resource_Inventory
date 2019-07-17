@@ -1,0 +1,29 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#", 
+    "$id": "ResourceLifecyleStateType.schema.json", 
+    "title": "ResourceLifecycleSubStateType", 
+    "definitions": {
+        "ResourceLifecycleSubStateType": {
+	  "id": "#ResourceLifecycleSubState
+            "type": "string", 
+            "description": "ResourceLifecycleSubState enumerations", 
+            "enum": [
+                "proposed", 
+                "feasibility checked", 
+                "designed", 
+                "ordered",
+		"activated",
+		"deactivated",
+		"working",
+		"working meets all SLA's",
+		"working meets some SLA's",
+		"working meets no SLA",
+		"not working",
+		"available",
+		"not available",
+		"assigned",
+		"reserved"
+            ]
+        }
+    }
+}
