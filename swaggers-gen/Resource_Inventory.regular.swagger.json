@@ -1330,6 +1330,37 @@
                 }
             }
         },
+        "ResourceLifecycleStateType": {
+            "type": "string",
+            "description": "ResourceLifecycleStateType enumerations",
+            "enum": [
+                "planning",
+                "installing",
+                "operating",
+                "retiring"
+            ]
+        },
+        "ResourceLifecycleSubStateType": {
+            "type": "string",
+            "description": "ResourceLifecycleSubState enumerations",
+            "enum": [
+                "proposed",
+                "feasibility checked",
+                "designed",
+                "ordered",
+                "activated",
+                "deactivated",
+                "working",
+                "working meets all SLAs",
+                "working meets some SLAs",
+                "working meets no SLA",
+                "not working",
+                "available",
+                "not available",
+                "assigned",
+                "reserved"
+            ]
+        },
         "ResourceRef": {
             "type": "object",
             "properties": {

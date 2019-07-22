@@ -4,7 +4,7 @@
     "title": "ResourceLifecycleSubStateType", 
     "definitions": {
         "ResourceLifecycleSubStateType": {
-	  "id": "#ResourceLifecycleSubState
+	  "id": "#ResourceLifecycleSubStateType",
             "type": "string", 
             "description": "ResourceLifecycleSubState enumerations", 
             "enum": [
@@ -15,8 +15,8 @@
 		"activated",
 		"deactivated",
 		"working",
-		"working meets all SLA's",
-		"working meets some SLA's",
+		"working meets all SLAs",
+		"working meets some SLAs",
 		"working meets no SLA",
 		"not working",
 		"available",

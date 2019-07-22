@@ -26,6 +26,32 @@ class Resource <<Pivot>> {
     @type : String
 }
 
+class ResourceLifecycleStateType <<Enumeration>> {
+    planning
+    installing
+    operating
+    retiring
+}
+
+class ResourceLifecycleSubStateType <<Enumeration>> {
+    proposed
+    feasibility checked
+    designed
+    ordered
+    activated
+    deactivated
+    working
+    working meets all SLAs
+    working meets some SLAs
+    working meets no SLA
+    not working
+    available
+    not available
+    assigned
+    reserved
+}
+
+
 class ResourceCharacteristic {
     name : String
     value : String
@@ -105,16 +131,19 @@ class ResourceSpecificationRef <<Ref>> {
 
 
 'processing edges for Resource
+Resource -right[hidden]-> ResourceLifecycleStateType
+ResourceLifecycleStateType -right[hidden]-> ResourceLifecycleSubStateType
+'have placed enums for Resource
 Note "0..*" <-left-* Resource : note
 ' rule: L01
-Resource *-right-> "0..*" ResourceCharacteristic : characteristic
-' rule: R03
+ResourceCharacteristic "0..*" <--* Resource : characteristic
+' rule: General above rule - direction: right
 PartyRoleRef "0..*" <--* Resource : partyRole
 ' rule: General above rule - direction: right
 PlaceRef "0..1" <--* Resource : place
 ' rule: General above rule - direction: right
-RelatedPartyRef "0..*" <--* Resource : relatedParty
-' rule: General above rule - direction: right
+Resource *-->  "0..*" RelatedPartyRef : relatedParty
+' rule: General below rule - either none already or unable to place left / right of currently placed
 Resource *-->  "0..*" ResourceRelationship : resourceRelationship
 ' rule: General below rule - either none already or unable to place left / right of currently placed
 Resource *-->  "0..1" ResourceSpecificationRef : resourceSpecification
