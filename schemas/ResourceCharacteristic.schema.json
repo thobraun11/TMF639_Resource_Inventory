@@ -11,7 +11,7 @@
                     "description": "name of the characteristic"
                 }, 
                 "value": {
-                    "type": "string", 
+                    "$ref": "../Common/Any.schema.json#/definitions/Any"
                     "description": "value of the characteristic"
                 }
             },
