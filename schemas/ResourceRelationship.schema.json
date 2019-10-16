@@ -11,7 +11,16 @@
                 }, 
                 "type": {
                     "type": "string"
-                }
+                },
+                "name": {
+                    "type": "string"
+                },
+                 "resourceRelationshipCharacteristic": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "Characteristic.schema.json#/definitions/Characteristic"
+                 }
+               }
             },
               "allOf": [
                 {

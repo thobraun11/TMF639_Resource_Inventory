@@ -10,13 +10,14 @@
     ],
     "eventResources": [],
     "usedClassesInRegularApi": [
+        "Any",
+        "Characteristic",
         "EntityRef",
         "Note",
         "PartyRoleRef",
         "PlaceRef",
         "RelatedPartyRef",
         "Resource",
-        "ResourceCharacteristic",
         "ResourceLifecycleStateType",
         "ResourceLifecycleSubStateType",
         "ResourceRef",
@@ -41,33 +42,38 @@
                 "delete"
             ],
             "attributes": [
+                "@referredType",
                 "category",
-                "characteristic",
                 "description",
                 "endOperatingDate",
                 "href",
                 "id",
                 "lifecycleState",
                 "lifecycleSubState",
+                "manufactureDate",
                 "name",
                 "note",
                 "partyRole",
                 "place",
+                "powerState",
                 "relatedParty",
+                "resourceCharacteristic",
                 "resourceRelationship",
                 "resourceSpecification",
-                "startOperatingDate",
-                "version"
+                "resourceVersion",
+                "serialNumber",
+                "startOperatingDate"
             ],
             "attributeDetails": {
+                "@referredType": {
+                    "type": "String",
+                    "multiplicity": "0..1",
+                    "documentation": "The actual type of the target instance when needed for disambiguation."
+                },
                 "category": {
                     "type": "String",
                     "multiplicity": "0..1",
                     "documentation": "Category of the concrete resource. e.g Gold, Silver for MSISDN concrete resource"
-                },
-                "characteristic": {
-                    "type": "ResourceCharacteristic",
-                    "multiplicity": "*"
                 },
                 "description": {
                     "type": "String",
@@ -81,12 +87,12 @@
                 },
                 "href": {
                     "type": "String",
-                    "multiplicity": "0..1",
+                    "multiplicity": "1",
                     "documentation": "The URI for the object itself."
                 },
                 "id": {
                     "type": "String",
-                    "multiplicity": "0..1",
+                    "multiplicity": "1",
                     "documentation": "Identifier of an instance of the resource. Required to be unique within the resource type.  Used in URIs as the identifier for specific instances of a type."
                 },
                 "lifecycleState": {
@@ -122,6 +128,11 @@
                     ],
                     "documentation": "Tracks the lifecyclesubstate of the resource, e.g for lifecycleState:Planning subState: proposed, feasibility checked,..,for lifecycleState: Operating subState: activated, deactivated, working, not working,.. and so on."
                 },
+                "manufactureDate": {
+                    "type": "DateTime",
+                    "multiplicity": "0..1",
+                    "documentation": "This is a string attribute that defines the date of manufacture of this item in the fixed format \"dd/mm/yyyy\". This is an optional attribute."
+                },
                 "name": {
                     "type": "String",
                     "multiplicity": "1",
@@ -142,10 +153,20 @@
                     "multiplicity": "0..1",
                     "documentation": "Place reference. PlaceRef defines the placeRefs where the products are sold or delivered."
                 },
+                "powerState": {
+                    "type": "String",
+                    "multiplicity": "0..1",
+                    "documentation": "This defines the current power status of the hardware item. Values include:\n\n  0:  Unknown\n  1:  Not Applicable\n  2:  No Power Applied\n  3: Full Power Applied\n  4:  Power Save - Normal\n  5:  Power Save - Degraded\n  6:  Power Save - Standby\n  7:  Power Save - Critical\n  8:  Power Save - Low Power Mode\n  9:  Power Save - Unknown\n 10: Power Cycle\n 11: Power Warning\n 12: Power Off"
+                },
                 "relatedParty": {
                     "type": "RelatedPartyRef",
                     "multiplicity": "*",
                     "documentation": "RelatedParty reference. A related party defines party or party role linked to a specific entity."
+                },
+                "resourceCharacteristic": {
+                    "type": "Characteristic",
+                    "multiplicity": "*",
+                    "documentation": "Describes a given characteristic of an object or entity through a name/value pair."
                 },
                 "resourceRelationship": {
                     "type": "ResourceRelationship",
@@ -156,15 +177,20 @@
                     "multiplicity": "0..1",
                     "documentation": "Resource Specification reference: The ResourceSpecification is required to realize a ProductSpecification."
                 },
+                "resourceVersion": {
+                    "type": "String",
+                    "multiplicity": "0..1",
+                    "documentation": "A field that identifies the specific version of an instance of a resource."
+                },
+                "serialNumber": {
+                    "type": "String",
+                    "multiplicity": "0..1",
+                    "documentation": "This is a string that represents a manufacturer-allocated number used to identify different instances of the same hardware item. The ModelNumber and PartNumber attributes are used to identify different types of hardware items. This is a REQUIRED attribute."
+                },
                 "startOperatingDate": {
                     "type": "DateTime",
                     "multiplicity": "0..1",
                     "documentation": "A date time( DateTime). The date from which the resource is operating"
-                },
-                "version": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "A field that identifies the specific version of an instance of a resource."
                 }
             }
         }

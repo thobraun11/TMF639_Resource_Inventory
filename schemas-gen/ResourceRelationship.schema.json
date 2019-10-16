@@ -6,8 +6,17 @@
         "ResourceRelationship": {
             "type": "object",
             "properties": {
+                "name": {
+                    "type": "string"
+                },
                 "resourceRef": {
                     "$ref": "ResourceRef.schema.json#/definitions/ResourceRef"
+                },
+                "resourceRelationshipCharacteristic": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "Characteristic.schema.json#/definitions/Characteristic"
+                    }
                 },
                 "type": {
                     "type": "string"

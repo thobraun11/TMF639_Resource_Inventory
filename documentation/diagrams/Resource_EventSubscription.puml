@@ -10,12 +10,11 @@ skinparam class {
    BackgroundColor #FCF2E3
 }
 
-class EventSubscription <<Pivot>> {
-    id : String
-    callback : String
+class EventSubscription  <<Pivot>> {
+    callback : String [1]
+    id : String [1]
     query : String
 }
 
 
-'processing edges for EventSubscription
 @enduml

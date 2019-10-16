@@ -820,6 +820,42 @@
         }
     },
     "definitions": {
+        "Any": {},
+        "Characteristic": {
+            "type": "object",
+            "description": "Describes a given characteristic of an object or entity through a name/value pair.",
+            "required": [
+                "name",
+                "value"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of the characteristic"
+                },
+                "valueType": {
+                    "type": "string",
+                    "description": "Data type of the value of the characteristic"
+                },
+                "value": {
+                    "$ref": "#/definitions/Any",
+                    "description": "The value of the characteristic"
+                },
+                "@baseType": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the super-class"
+                },
+                "@schemaLocation": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "A URI to a JSON-Schema file that defines additional attributes and relationships"
+                },
+                "@type": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the sub-class entity name"
+                }
+            }
+        },
         "EntityRef": {
             "type": "object",
             "description": "Entity reference schema to be use for all entityRef class.",
@@ -1024,6 +1060,8 @@
             "type": "object",
             "description": "Resource is an abstract entity that describes the common set of attributes shared by all concrete resources (e.g. TPE, EQUIPMENT) in the inventory.",
             "required": [
+                "href",
+                "id",
                 "name"
             ],
             "properties": {
@@ -1048,24 +1086,31 @@
                     "format": "date-time",
                     "description": "A date time( DateTime). The date till the resource is operating"
                 },
+                "manufactureDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "This is a string attribute that defines the date of manufacture of this item in the fixed format \"dd/mm/yyyy\". This is an optional attribute."
+                },
                 "name": {
                     "type": "string",
                     "description": "A string used to give a name to the resource"
+                },
+                "powerState": {
+                    "type": "string",
+                    "description": "This defines the current power status of the hardware item. Values include:\n\n  0:  Unknown\n  1:  Not Applicable\n  2:  No Power Applied\n  3: Full Power Applied\n  4:  Power Save - Normal\n  5:  Power Save - Degraded\n  6:  Power Save - Standby\n  7:  Power Save - Critical\n  8:  Power Save - Low Power Mode\n  9:  Power Save - Unknown\n 10: Power Cycle\n 11: Power Warning\n 12: Power Off"
+                },
+                "resourceVersion": {
+                    "type": "string",
+                    "description": "A field that identifies the specific version of an instance of a resource."
+                },
+                "serialNumber": {
+                    "type": "string",
+                    "description": "This is a string that represents a manufacturer-allocated number used to identify different instances of the same hardware item. The ModelNumber and PartNumber attributes are used to identify different types of hardware items. This is a REQUIRED attribute."
                 },
                 "startOperatingDate": {
                     "type": "string",
                     "format": "date-time",
                     "description": "A date time( DateTime). The date from which the resource is operating"
-                },
-                "version": {
-                    "type": "string",
-                    "description": "A field that identifies the specific version of an instance of a resource."
-                },
-                "characteristic": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/ResourceCharacteristic"
-                    }
                 },
                 "lifecycleState": {
                     "$ref": "#/definitions/ResourceLifecycleStateType",
@@ -1096,6 +1141,12 @@
                         "$ref": "#/definitions/RelatedPartyRef"
                     }
                 },
+                "resourceCharacteristic": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Characteristic"
+                    }
+                },
                 "resourceRelationship": {
                     "type": "array",
                     "items": {
@@ -1117,6 +1168,10 @@
                 "@type": {
                     "type": "string",
                     "description": "When sub-classing, this defines the sub-class entity name"
+                },
+                "@referredType": {
+                    "type": "string",
+                    "description": "The actual type of the target instance when needed for disambiguation."
                 }
             }
         },
@@ -1124,6 +1179,8 @@
             "type": "object",
             "description": "Resource is an abstract entity that describes the common set of attributes shared by all concrete resources (e.g. TPE, EQUIPMENT) in the inventory.\nSkipped properties: id,href",
             "required": [
+                "href",
+                "id",
                 "name"
             ],
             "properties": {
@@ -1140,24 +1197,31 @@
                     "format": "date-time",
                     "description": "A date time( DateTime). The date till the resource is operating"
                 },
+                "manufactureDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "This is a string attribute that defines the date of manufacture of this item in the fixed format \"dd/mm/yyyy\". This is an optional attribute."
+                },
                 "name": {
                     "type": "string",
                     "description": "A string used to give a name to the resource"
+                },
+                "powerState": {
+                    "type": "string",
+                    "description": "This defines the current power status of the hardware item. Values include:\n\n  0:  Unknown\n  1:  Not Applicable\n  2:  No Power Applied\n  3: Full Power Applied\n  4:  Power Save - Normal\n  5:  Power Save - Degraded\n  6:  Power Save - Standby\n  7:  Power Save - Critical\n  8:  Power Save - Low Power Mode\n  9:  Power Save - Unknown\n 10: Power Cycle\n 11: Power Warning\n 12: Power Off"
+                },
+                "resourceVersion": {
+                    "type": "string",
+                    "description": "A field that identifies the specific version of an instance of a resource."
+                },
+                "serialNumber": {
+                    "type": "string",
+                    "description": "This is a string that represents a manufacturer-allocated number used to identify different instances of the same hardware item. The ModelNumber and PartNumber attributes are used to identify different types of hardware items. This is a REQUIRED attribute."
                 },
                 "startOperatingDate": {
                     "type": "string",
                     "format": "date-time",
                     "description": "A date time( DateTime). The date from which the resource is operating"
-                },
-                "version": {
-                    "type": "string",
-                    "description": "A field that identifies the specific version of an instance of a resource."
-                },
-                "characteristic": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/ResourceCharacteristic"
-                    }
                 },
                 "lifecycleState": {
                     "$ref": "#/definitions/ResourceLifecycleStateType",
@@ -1188,6 +1252,12 @@
                         "$ref": "#/definitions/RelatedPartyRef"
                     }
                 },
+                "resourceCharacteristic": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Characteristic"
+                    }
+                },
                 "resourceRelationship": {
                     "type": "array",
                     "items": {
@@ -1209,6 +1279,10 @@
                 "@type": {
                     "type": "string",
                     "description": "When sub-classing, this defines the sub-class entity name"
+                },
+                "@referredType": {
+                    "type": "string",
+                    "description": "The actual type of the target instance when needed for disambiguation."
                 }
             }
         },
@@ -1216,6 +1290,8 @@
             "type": "object",
             "description": "Resource is an abstract entity that describes the common set of attributes shared by all concrete resources (e.g. TPE, EQUIPMENT) in the inventory.\nSkipped properties: id,href",
             "required": [
+                "href",
+                "id",
                 "name"
             ],
             "properties": {
@@ -1232,24 +1308,31 @@
                     "format": "date-time",
                     "description": "A date time( DateTime). The date till the resource is operating"
                 },
+                "manufactureDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "This is a string attribute that defines the date of manufacture of this item in the fixed format \"dd/mm/yyyy\". This is an optional attribute."
+                },
                 "name": {
                     "type": "string",
                     "description": "A string used to give a name to the resource"
+                },
+                "powerState": {
+                    "type": "string",
+                    "description": "This defines the current power status of the hardware item. Values include:\n\n  0:  Unknown\n  1:  Not Applicable\n  2:  No Power Applied\n  3: Full Power Applied\n  4:  Power Save - Normal\n  5:  Power Save - Degraded\n  6:  Power Save - Standby\n  7:  Power Save - Critical\n  8:  Power Save - Low Power Mode\n  9:  Power Save - Unknown\n 10: Power Cycle\n 11: Power Warning\n 12: Power Off"
+                },
+                "resourceVersion": {
+                    "type": "string",
+                    "description": "A field that identifies the specific version of an instance of a resource."
+                },
+                "serialNumber": {
+                    "type": "string",
+                    "description": "This is a string that represents a manufacturer-allocated number used to identify different instances of the same hardware item. The ModelNumber and PartNumber attributes are used to identify different types of hardware items. This is a REQUIRED attribute."
                 },
                 "startOperatingDate": {
                     "type": "string",
                     "format": "date-time",
                     "description": "A date time( DateTime). The date from which the resource is operating"
-                },
-                "version": {
-                    "type": "string",
-                    "description": "A field that identifies the specific version of an instance of a resource."
-                },
-                "characteristic": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/ResourceCharacteristic"
-                    }
                 },
                 "lifecycleState": {
                     "$ref": "#/definitions/ResourceLifecycleStateType",
@@ -1280,6 +1363,12 @@
                         "$ref": "#/definitions/RelatedPartyRef"
                     }
                 },
+                "resourceCharacteristic": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Characteristic"
+                    }
+                },
                 "resourceRelationship": {
                     "type": "array",
                     "items": {
@@ -1301,32 +1390,10 @@
                 "@type": {
                     "type": "string",
                     "description": "When sub-classing, this defines the sub-class entity name"
-                }
-            }
-        },
-        "ResourceCharacteristic": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "description": "name of the characteristic"
                 },
-                "value": {
+                "@referredType": {
                     "type": "string",
-                    "description": "value of the characteristic"
-                },
-                "@baseType": {
-                    "type": "string",
-                    "description": "When sub-classing, this defines the super-class"
-                },
-                "@schemaLocation": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "A URI to a JSON-Schema file that defines additional attributes and relationships"
-                },
-                "@type": {
-                    "type": "string",
-                    "description": "When sub-classing, this defines the sub-class entity name"
+                    "description": "The actual type of the target instance when needed for disambiguation."
                 }
             }
         },
@@ -1395,11 +1462,20 @@
         "ResourceRelationship": {
             "type": "object",
             "properties": {
+                "name": {
+                    "type": "string"
+                },
                 "type": {
                     "type": "string"
                 },
                 "resourceRef": {
                     "$ref": "#/definitions/ResourceRef"
+                },
+                "resourceRelationshipCharacteristic": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Characteristic"
+                    }
                 },
                 "@baseType": {
                     "type": "string",

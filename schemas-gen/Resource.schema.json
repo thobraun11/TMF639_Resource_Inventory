@@ -7,15 +7,13 @@
             "type": "object",
             "description": "Resource is an abstract entity that describes the common set of attributes shared by all concrete resources (e.g. TPE, EQUIPMENT) in the inventory.",
             "properties": {
+                "@referredType": {
+                    "type": "string",
+                    "description": "The actual type of the target instance when needed for disambiguation."
+                },
                 "category": {
                     "type": "string",
                     "description": "Category of the concrete resource. e.g Gold, Silver for MSISDN concrete resource"
-                },
-                "characteristic": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "ResourceCharacteristic.schema.json#/definitions/ResourceCharacteristic"
-                    }
                 },
                 "description": {
                     "type": "string",
@@ -42,6 +40,11 @@
                     "$ref": "ResourceLifecycleSubStateType.schema.json#/definitions/ResourceLifecycleSubStateType",
                     "description": "Tracks the lifecyclesubstate of the resource, e.g for lifecycleState:Planning subState: proposed, feasibility checked,..,for lifecycleState: Operating subState: activated, deactivated, working, not working,.. and so on."
                 },
+                "manufactureDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "This is a string attribute that defines the date of manufacture of this item in the fixed format \"dd/mm/yyyy\". This is an optional attribute."
+                },
                 "name": {
                     "type": "string",
                     "description": "A string used to give a name to the resource"
@@ -61,10 +64,20 @@
                 "place": {
                     "$ref": "PlaceRef.schema.json#/definitions/PlaceRef"
                 },
+                "powerState": {
+                    "type": "string",
+                    "description": "This defines the current power status of the hardware item. Values include:\n\n  0:  Unknown\n  1:  Not Applicable\n  2:  No Power Applied\n  3: Full Power Applied\n  4:  Power Save - Normal\n  5:  Power Save - Degraded\n  6:  Power Save - Standby\n  7:  Power Save - Critical\n  8:  Power Save - Low Power Mode\n  9:  Power Save - Unknown\n 10: Power Cycle\n 11: Power Warning\n 12: Power Off"
+                },
                 "relatedParty": {
                     "type": "array",
                     "items": {
                         "$ref": "RelatedPartyRef.schema.json#/definitions/RelatedPartyRef"
+                    }
+                },
+                "resourceCharacteristic": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "Characteristic.schema.json#/definitions/Characteristic"
                     }
                 },
                 "resourceRelationship": {
@@ -76,14 +89,18 @@
                 "resourceSpecification": {
                     "$ref": "ResourceSpecificationRef.schema.json#/definitions/ResourceSpecificationRef"
                 },
+                "resourceVersion": {
+                    "type": "string",
+                    "description": "A field that identifies the specific version of an instance of a resource."
+                },
+                "serialNumber": {
+                    "type": "string",
+                    "description": "This is a string that represents a manufacturer-allocated number used to identify different instances of the same hardware item. The ModelNumber and PartNumber attributes are used to identify different types of hardware items. This is a REQUIRED attribute."
+                },
                 "startOperatingDate": {
                     "type": "string",
                     "format": "date-time",
                     "description": "A date time( DateTime). The date from which the resource is operating"
-                },
-                "version": {
-                    "type": "string",
-                    "description": "A field that identifies the specific version of an instance of a resource."
                 }
             },
             "allOf": [
