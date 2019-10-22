@@ -1,0 +1,58 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "Attachment.schema.json",
+    "title": "Attachment",
+    "definitions": {
+        "Attachment": {
+            "type": "object",
+            "description": "Complements the description of an element (for instance a product) through video, pictures...",
+            "properties": {
+                "attachmentType": {
+                    "type": "string",
+                    "description": "Attachment type such as video, picture"
+                },
+                "content": {
+                    "type": "string",
+                    "description": "The actual contents of the attachment object, if embedded, encoded as base64"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A narrative text describing the content of the attachment"
+                },
+                "href": {
+                    "type": "string",
+                    "description": "URI for this Attachment"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier for this particular attachment"
+                },
+                "mimeType": {
+                    "type": "string",
+                    "description": "Attachment mime type such as extension file for video, picture and document"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the attachment"
+                },
+                "size": {
+                    "$ref": "Quantity.schema.json#/definitions/Quantity",
+                    "description": "The size of the attachment."
+                },
+                "url": {
+                    "type": "string",
+                    "description": "Uniform Resource Locator, is a web page address (a subset of URI)"
+                },
+                "validFor": {
+                    "$ref": "TimePeriod.schema.json#/definitions/TimePeriod",
+                    "description": "The period of time for which the attachment is valid"
+                }
+            },
+            "allOf": [
+                {
+                    "$ref": "Entity.schema.json#/Entity"
+                }
+            ]
+        }
+    }
+}

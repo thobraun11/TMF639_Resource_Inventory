@@ -28,22 +28,18 @@
                     "type": "string",
                     "description": "Identifier of an instance of the resource. Required to be unique within the resource type.  Used in URIs as the identifier for specific instances of a type."
                 },
-                "lifecycleState": {
-                    "type": "string",
-                    "description": "The life cycle state of the resource."
-                },
                 "name": {
                     "type": "string",
                     "description": "A string used to give a name to the resource"
+                },
+                "resourceVersion": {
+                    "type": "string",
+                    "description": "A field that identifies the specific version of an instance of a resource."
                 },
                 "startOperatingDate": {
                     "type": "string",
                     "format": "date-time",
                     "description": "A date time( DateTime). The date from which the resource is operating"
-                },
-                "version": {
-                    "type": "string",
-                    "description": "A field that identifies the specific version of an instance of a resource."
                 },
                 "@referredType": {
                     "type": "string",
@@ -58,9 +54,6 @@
                     "type": "string",
                     "description": "This defines the current power status of the hardware item. Values include:\n\n  0:  Unknown\n  1:  Not Applicable\n  2:  No Power Applied\n  3: Full Power Applied\n  4:  Power Save - Normal\n  5:  Power Save - Degraded\n  6:  Power Save - Standby\n  7:  Power Save - Critical\n  8:  Power Save - Low Power Mode\n  9:  Power Save - Unknown\n 10: Power Cycle\n 11: Power Warning\n 12: Power Off"
                 },
-                "resourceSpecification": {
-                    "$ref": "ResourceSpecificationRef.schema.json#/definitions/ResourceSpecificationRef"
-                },
                 "serialNumber": {
                     "type": "string",
                     "description": "This is a string that represents a manufacturer-allocated number used to identify different instances of the same hardware item. The ModelNumber and PartNumber attributes are used to identify different types of hardware items. This is a REQUIRED attribute."
@@ -69,11 +62,9 @@
                     "type": "string",
                     "description": "This is a string that identifies the version of this physical resource. This is an optional attribute."
                 },
-                "characteristic": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "ResourceCharacteristic.schema.json#/definitions/ResourceCharacteristic"
-                    }
+                "lifecycleState": {
+                    "$ref": "ResourceLifecycleStateType.schema.json#/definitions/ResourceLifecycleStateType",
+                    "description": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
                 },
                 "note": {
                     "type": "array",
@@ -81,19 +72,25 @@
                         "$ref": "Note.schema.json#/definitions/Note"
                     }
                 },
-                "partyRole": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "PartyRoleRef.schema.json#/definitions/PartyRoleRef"
-                    }
-                },
-                "place": {
-                    "$ref": "Place.schema.json#/definitions/Place"
-                },
                 "relatedParty": {
                     "type": "array",
                     "items": {
                         "$ref": "RelatedPartyRef.schema.json#/definitions/RelatedPartyRef"
+                    }
+                },
+                "relatedPlace": {
+                    "$ref": "RelatedPlaceRefOrValue.schema.json#/definitions/RelatedPlaceRefOrValue"
+                },
+                "resourceAttachment": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "AttachmentRefOrValue.schema.json#/definitions/AttachmentRefOrValue"
+                    }
+                },
+                "resourceCharacteristic": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "Characteristic.schema.json#/definitions/Characteristic"
                     }
                 },
                 "resourceRelationship": {
@@ -101,6 +98,9 @@
                     "items": {
                         "$ref": "ResourceRelationship.schema.json#/definitions/ResourceRelationship"
                     }
+                },
+                "resourceSpecification": {
+                    "$ref": "ResourceSpecificationRef.schema.json#/definitions/ResourceSpecificationRef"
                 }
             },
             "allOf": [

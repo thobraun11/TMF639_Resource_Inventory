@@ -17,15 +17,10 @@ class Resource  <<Pivot>> {
     href : String [1]
     id : String [1]
     lifecycleState : ResourceLifecycleStateType
-    lifecycleSubState : ResourceLifecycleSubStateType
-    manufactureDate : DateTime
-    name : String [1]
-    powerState : String
+    name : String
     resourceVersion : String
-    serialNumber : String
     startOperatingDate : DateTime
     @baseType : String
-    @referredType : String
     @schemaLocation : Uri
     @type : String
 }
@@ -37,22 +32,32 @@ class ResourceLifecycleStateType <<Enumeration>> {
     retiring
 }
 
-class ResourceLifecycleSubStateType <<Enumeration>> {
-    proposed
-    feasibility checked
-    designed
-    ordered
-    activated
-    deactivated
-    working
-    working meets all SLAs
-    working meets some SLAs
-    working meets no SLA
-    not working
-    available
-    not available
-    assigned
-    reserved
+class RelatedPlaceRefOrValue  {
+    href : String [1]
+    id : String [1]
+    name : String
+    role : String [1]
+    @baseType : String
+    @referredType : String
+    @schemaLocation : Uri
+    @type : String
+}
+
+class AttachmentRefOrValue  {
+    attachmentType : String
+    content : String
+    description : String
+    href : String
+    id : String
+    mimeType : String
+    name : String
+    size : Quantity
+    url : String
+    validFor : TimePeriod
+    @baseType : String
+    @referredType : String
+    @schemaLocation : Uri
+    @type : String
 }
 
 class Note  {
@@ -95,18 +100,6 @@ class RelatedPartyRef  <<Ref>> {
     @type : String
 }
 
-class PartyRoleRef  <<Ref>> {
-    href : String [1]
-    id : String [1]
-    name : String
-    partyId : String
-    partyName : String
-    @baseType : String
-    @referredType : String
-    @schemaLocation : Uri
-    @type : String
-}
-
 class ResourceRelationship  {
     name : String
     type : String
@@ -124,19 +117,7 @@ class ResourceRef  <<Ref>> {
     @type : String
 }
 
-class PlaceRef  <<Ref>> {
-    href : String
-    id : String [1]
-    name : String
-    @baseType : String
-    @referredType : String
-    @schemaLocation : Uri
-    @type : String
-}
-
 Resource -right[hidden]-> ResourceLifecycleStateType
-
-ResourceLifecycleStateType -right[hidden]-> ResourceLifecycleSubStateType
 
 Resource *-->  "0..*" Characteristic : resourceCharacteristic
 
@@ -146,11 +127,11 @@ ResourceRelationship *-right-> "0..*" Characteristic : resourceRelationshipChara
 
 Note "0..*" <-left-* Resource : note
 
-PlaceRef "0..1" <--* Resource : place
-
-PartyRoleRef "0..*" <--* Resource : partyRole
-
 RelatedPartyRef "0..*" <--* Resource : relatedParty
+
+RelatedPlaceRefOrValue "0..1" <--* Resource : relatedPlace
+
+AttachmentRefOrValue "0..*" <--* Resource : resourceAttachment
 
 Resource *-->  "0..1" ResourceSpecificationRef : resourceSpecification
 

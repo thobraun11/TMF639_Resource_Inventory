@@ -17,7 +17,7 @@
                 }
             },
             "allOf": [{
-                    "$ref": "../Common/Resource.schema.json#Resource"
+                    "$ref": "./Resource.schema.json#Resource"
                 }
                 ]
             }

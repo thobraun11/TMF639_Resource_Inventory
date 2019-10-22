@@ -10,137 +10,131 @@ skinparam class {
    BackgroundColor #FCF2E3
 }
 
-class PhysicalResource <<Pivot>> {
-    id : String
-    href : String
+class PhysicalResource  <<Pivot>> {
     category : String
     description : String
     endOperatingDate : DateTime
-    lifecycleState : String
+    href : String [1]
+    id : String [1]
+    lifecycleState : ResourceLifecycleStateType
     manufactureDate : DateTime
     name : String
     powerState : String
+    resourceVersion : String
     serialNumber : String
     startOperatingDate : DateTime
-    version : String
     versionNumber : String
     @baseType : String
-    @schemaLocation : Uri
-    @type : String
     @referredType : String
-}
-
-class ResourceCharacteristic {
-    name : String
-    value : String
-    @baseType : String
     @schemaLocation : Uri
     @type : String
 }
 
-class Note {
+class RelatedPlaceRefOrValue  {
+    href : String [1]
+    id : String [1]
+    name : String
+    role : String [1]
+    @baseType : String
+    @referredType : String
+    @schemaLocation : Uri
+    @type : String
+}
+
+class AttachmentRefOrValue  {
+    attachmentType : String
+    content : String
+    description : String
+    href : String
+    id : String
+    mimeType : String
+    name : String
+    size : Quantity
+    url : String
+    validFor : TimePeriod
+    @baseType : String
+    @referredType : String
+    @schemaLocation : Uri
+    @type : String
+}
+
+class Note  {
     author : String
     date : DateTime
-    text : String
+    text : String [1]
     @baseType : String
     @schemaLocation : Uri
     @type : String
 }
 
-class PartyRoleRef <<Ref>> {
-    id : String
-    href : String
+class ResourceSpecificationRef  <<Ref>> {
+    href : String [1]
+    id : String [1]
     name : String
-    partyId : String
-    partyName : String
+    version : String
+    @baseType : String
+    @referredType : String
+    @schemaLocation : Uri
+    @type : String
+}
+
+class Characteristic  {
+    name : String [1]
+    value : Any [1]
+    valueType : String
     @baseType : String
     @schemaLocation : Uri
     @type : String
-    @referredType : String
 }
 
-class Place {
-    id : String
+class RelatedPartyRef  <<Ref>> {
     href : String
+    id : String [1]
     name : String
     role : String
     @baseType : String
-    @schemaLocation : Uri
-    @type : String
-}
-
-class RelatedPartyRef <<Ref>> {
-    id : String
-    href : String
-    name : String
-    role : String
-    @baseType : String
-    @schemaLocation : Uri
-    @type : String
     @referredType : String
+    @schemaLocation : Uri
+    @type : String
 }
 
-class ResourceRelationship {
+class ResourceRelationship  {
+    name : String
     type : String
     @baseType : String
     @schemaLocation : Uri
     @type : String
 }
 
-class ResourceRef <<Ref>> {
-    id : String
+class ResourceRef  <<Ref>> {
     href : String
+    id : String [1]
     @baseType : String
+    @referredType : String
     @schemaLocation : Uri
     @type : String
-    @referredType : String
 }
 
-class ResourceSpecificationRef <<Ref>> {
-    id : String
-    href : String
-    name : String
-    version : String
-    @baseType : String
-    @schemaLocation : Uri
-    @type : String
-    @referredType : String
-}
+PhysicalResource -right[hidden]-> ResourceLifecycleStateType
 
+PhysicalResource *-->  "0..*" Characteristic : resourceCharacteristic
 
-'processing edges for PhysicalResource
-ResourceCharacteristic "0..*" <-left-* PhysicalResource : characteristic
-' rule: L01
-PhysicalResource *-right-> "0..*" Note : note
-' rule: R03
-PartyRoleRef "0..*" <--* PhysicalResource : partyRole
-' rule: General above rule - direction: right
-Place "0..1" <--* PhysicalResource : place
-' rule: General above rule - direction: right
-RelatedPartyRef "0..*" <--* PhysicalResource : relatedParty
-' rule: General above rule - direction: right
 PhysicalResource *-->  "0..*" ResourceRelationship : resourceRelationship
-' rule: General below rule - either none already or unable to place left / right of currently placed
+
+ResourceRelationship *-right-> "0..*" Characteristic : resourceRelationshipCharacteristic
+
+Note "0..*" <-left-* PhysicalResource : note
+
+RelatedPartyRef "0..*" <--* PhysicalResource : relatedParty
+
+RelatedPlaceRefOrValue "0..1" <--* PhysicalResource : relatedPlace
+
+AttachmentRefOrValue "0..*" <--* PhysicalResource : resourceAttachment
+
 PhysicalResource *-->  "0..1" ResourceSpecificationRef : resourceSpecification
-' rule: General below rule - either none already or unable to place left / right of currently placed
-'completed processing of edges for PhysicalResource
 
-'processing edges for ResourceCharacteristic
+Characteristic <-left[hidden]- ResourceSpecificationRef
 
-'processing edges for Note
-
-'processing edges for PartyRoleRef
-
-'processing edges for Place
-
-'processing edges for RelatedPartyRef
-
-'processing edges for ResourceRelationship
 ResourceRelationship *-->  "0..1" ResourceRef : resourceRef
-' rule: General below rule - either none already or unable to place left / right of currently placed
-'completed processing of edges for ResourceRelationship
 
-'processing edges for ResourceRef
-
-'processing edges for ResourceSpecificationRef
 @enduml

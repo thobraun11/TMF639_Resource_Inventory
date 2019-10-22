@@ -21,6 +21,12 @@
             "name": "resource"
         },
         {
+            "name": "physicalResource"
+        },
+        {
+            "name": "logicalResource"
+        },
+        {
             "name": "notification listeners (client side)"
         },
         {
@@ -349,6 +355,832 @@
                     {
                         "name": "id",
                         "description": "Identifier of the Resource",
+                        "required": true,
+                        "type": "string",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not allowed",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/physicalResource": {
+            "get": {
+                "operationId": "listPhysicalResource",
+                "summary": "List or find PhysicalResource objects",
+                "description": "This operation list or find PhysicalResource entities",
+                "tags": [
+                    "physicalResource"
+                ],
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "description": "Comma-separated properties to be provided in response",
+                        "required": false,
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "offset",
+                        "description": "Requested index for start of resources to be provided in response",
+                        "required": false,
+                        "in": "query",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "limit",
+                        "description": "Requested number of resources to be provided in response",
+                        "required": false,
+                        "in": "query",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "headers": {
+                            "X-Result-Count": {
+                                "description": "Actual number of items returned in the response body",
+                                "type": "integer"
+                            },
+                            "X-Total-Count": {
+                                "description": "Total number of items matching criteria",
+                                "type": "integer"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PhysicalResource"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not allowed",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "operationId": "createPhysicalResource",
+                "summary": "Creates a PhysicalResource",
+                "description": "This operation creates a PhysicalResource entity.",
+                "tags": [
+                    "physicalResource"
+                ],
+                "parameters": [
+                    {
+                        "name": "physicalResource",
+                        "description": "The PhysicalResource to be created",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PhysicalResource_Create"
+                        },
+                        "in": "body"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/PhysicalResource"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not allowed",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/physicalResource/{id}": {
+            "get": {
+                "operationId": "retrievePhysicalResource",
+                "summary": "Retrieves a PhysicalResource by ID",
+                "description": "This operation retrieves a PhysicalResource entity. Attribute selection is enabled for all first level attributes.",
+                "tags": [
+                    "physicalResource"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "description": "Identifier of the PhysicalResource",
+                        "required": true,
+                        "type": "string",
+                        "in": "path"
+                    },
+                    {
+                        "name": "fields",
+                        "description": "Comma-separated properties to provide in response",
+                        "required": false,
+                        "type": "string",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/PhysicalResource"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not allowed",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "patchPhysicalResource",
+                "summary": "Updates partially a PhysicalResource",
+                "description": "This operation updates partially a PhysicalResource entity.",
+                "tags": [
+                    "physicalResource"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "description": "Identifier of the PhysicalResource",
+                        "required": true,
+                        "type": "string",
+                        "in": "path"
+                    },
+                    {
+                        "name": "physicalResource",
+                        "description": "The PhysicalResource to be updated",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PhysicalResource_Update"
+                        },
+                        "in": "body"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/PhysicalResource"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not allowed",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "deletePhysicalResource",
+                "summary": "Deletes a PhysicalResource",
+                "description": "This operation deletes a PhysicalResource entity.",
+                "tags": [
+                    "physicalResource"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "description": "Identifier of the PhysicalResource",
+                        "required": true,
+                        "type": "string",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not allowed",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/logicalResource": {
+            "get": {
+                "operationId": "listLogicalResource",
+                "summary": "List or find LogicalResource objects",
+                "description": "This operation list or find LogicalResource entities",
+                "tags": [
+                    "logicalResource"
+                ],
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "description": "Comma-separated properties to be provided in response",
+                        "required": false,
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "offset",
+                        "description": "Requested index for start of resources to be provided in response",
+                        "required": false,
+                        "in": "query",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "limit",
+                        "description": "Requested number of resources to be provided in response",
+                        "required": false,
+                        "in": "query",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "headers": {
+                            "X-Result-Count": {
+                                "description": "Actual number of items returned in the response body",
+                                "type": "integer"
+                            },
+                            "X-Total-Count": {
+                                "description": "Total number of items matching criteria",
+                                "type": "integer"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/LogicalResource"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not allowed",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "operationId": "createLogicalResource",
+                "summary": "Creates a LogicalResource",
+                "description": "This operation creates a LogicalResource entity.",
+                "tags": [
+                    "logicalResource"
+                ],
+                "parameters": [
+                    {
+                        "name": "logicalResource",
+                        "description": "The LogicalResource to be created",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/LogicalResource_Create"
+                        },
+                        "in": "body"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/LogicalResource"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not allowed",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/logicalResource/{id}": {
+            "get": {
+                "operationId": "retrieveLogicalResource",
+                "summary": "Retrieves a LogicalResource by ID",
+                "description": "This operation retrieves a LogicalResource entity. Attribute selection is enabled for all first level attributes.",
+                "tags": [
+                    "logicalResource"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "description": "Identifier of the LogicalResource",
+                        "required": true,
+                        "type": "string",
+                        "in": "path"
+                    },
+                    {
+                        "name": "fields",
+                        "description": "Comma-separated properties to provide in response",
+                        "required": false,
+                        "type": "string",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/LogicalResource"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not allowed",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "operationId": "updateLogicalResource",
+                "summary": "Updates a LogicalResource",
+                "description": "This operation updates a LogicalResource entity.",
+                "tags": [
+                    "logicalResource"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "description": "Identifier of the LogicalResource",
+                        "required": true,
+                        "type": "string",
+                        "in": "path"
+                    },
+                    {
+                        "name": "logicalResource",
+                        "description": "The LogicalResource to be updated",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/LogicalResource_Update"
+                        },
+                        "in": "body"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/LogicalResource"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not allowed",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "patchLogicalResource",
+                "summary": "Updates partially a LogicalResource",
+                "description": "This operation updates partially a LogicalResource entity.",
+                "tags": [
+                    "logicalResource"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "description": "Identifier of the LogicalResource",
+                        "required": true,
+                        "type": "string",
+                        "in": "path"
+                    },
+                    {
+                        "name": "logicalResource",
+                        "description": "The LogicalResource to be updated",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/LogicalResource_Update"
+                        },
+                        "in": "body"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/LogicalResource"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not allowed",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "deleteLogicalResource",
+                "summary": "Deletes a LogicalResource",
+                "description": "This operation deletes a LogicalResource entity.",
+                "tags": [
+                    "logicalResource"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "description": "Identifier of the LogicalResource",
                         "required": true,
                         "type": "string",
                         "in": "path"
@@ -817,10 +1649,462 @@
                     }
                 }
             }
+        },
+        "/listener/physicalResourceCreateEvent": {
+            "post": {
+                "operationId": "listenToPhysicalResourceCreateEvent",
+                "summary": "Client listener for entity PhysicalResourceCreateEvent",
+                "description": "Example of a client listener for receiving the notification PhysicalResourceCreateEvent",
+                "tags": [
+                    "notification listeners (client side)"
+                ],
+                "parameters": [
+                    {
+                        "name": "data",
+                        "required": true,
+                        "in": "body",
+                        "description": "The event data",
+                        "schema": {
+                            "$ref": "#/definitions/PhysicalResourceCreateEvent"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Notified",
+                        "schema": {
+                            "$ref": "#/definitions/EventSubscription"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not allowed",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/listener/physicalResourceAttributeValueChangeEvent": {
+            "post": {
+                "operationId": "listenToPhysicalResourceAttributeValueChangeEvent",
+                "summary": "Client listener for entity PhysicalResourceAttributeValueChangeEvent",
+                "description": "Example of a client listener for receiving the notification PhysicalResourceAttributeValueChangeEvent",
+                "tags": [
+                    "notification listeners (client side)"
+                ],
+                "parameters": [
+                    {
+                        "name": "data",
+                        "required": true,
+                        "in": "body",
+                        "description": "The event data",
+                        "schema": {
+                            "$ref": "#/definitions/PhysicalResourceAttributeValueChangeEvent"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Notified",
+                        "schema": {
+                            "$ref": "#/definitions/EventSubscription"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not allowed",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/listener/physicalResourceStateChangeEvent": {
+            "post": {
+                "operationId": "listenToPhysicalResourceStateChangeEvent",
+                "summary": "Client listener for entity PhysicalResourceStateChangeEvent",
+                "description": "Example of a client listener for receiving the notification PhysicalResourceStateChangeEvent",
+                "tags": [
+                    "notification listeners (client side)"
+                ],
+                "parameters": [
+                    {
+                        "name": "data",
+                        "required": true,
+                        "in": "body",
+                        "description": "The event data",
+                        "schema": {
+                            "$ref": "#/definitions/PhysicalResourceStateChangeEvent"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Notified",
+                        "schema": {
+                            "$ref": "#/definitions/EventSubscription"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not allowed",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/listener/physicalResourceDeleteEvent": {
+            "post": {
+                "operationId": "listenToPhysicalResourceDeleteEvent",
+                "summary": "Client listener for entity PhysicalResourceDeleteEvent",
+                "description": "Example of a client listener for receiving the notification PhysicalResourceDeleteEvent",
+                "tags": [
+                    "notification listeners (client side)"
+                ],
+                "parameters": [
+                    {
+                        "name": "data",
+                        "required": true,
+                        "in": "body",
+                        "description": "The event data",
+                        "schema": {
+                            "$ref": "#/definitions/PhysicalResourceDeleteEvent"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Notified",
+                        "schema": {
+                            "$ref": "#/definitions/EventSubscription"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not allowed",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
         "Any": {},
+        "Attachment": {
+            "type": "object",
+            "description": "Complements the description of an element (for instance a product) through video, pictures...",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier for this particular attachment"
+                },
+                "href": {
+                    "type": "string",
+                    "description": "URI for this Attachment"
+                },
+                "attachmentType": {
+                    "type": "string",
+                    "description": "Attachment type such as video, picture"
+                },
+                "content": {
+                    "type": "string",
+                    "description": "The actual contents of the attachment object, if embedded, encoded as base64"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A narrative text describing the content of the attachment"
+                },
+                "mimeType": {
+                    "type": "string",
+                    "description": "Attachment mime type such as extension file for video, picture and document"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the attachment"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "Uniform Resource Locator, is a web page address (a subset of URI)"
+                },
+                "size": {
+                    "$ref": "#/definitions/Quantity",
+                    "description": "The size of the attachment."
+                },
+                "validFor": {
+                    "$ref": "#/definitions/TimePeriod",
+                    "description": "The period of time for which the attachment is valid"
+                },
+                "@baseType": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the super-class"
+                },
+                "@schemaLocation": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "A URI to a JSON-Schema file that defines additional attributes and relationships"
+                },
+                "@type": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the sub-class entity name"
+                }
+            }
+        },
+        "AttachmentRef": {
+            "type": "object",
+            "description": "Attachment reference. An attachment complements the description of an element (for instance a product) through video, pictures",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique-Identifier for this attachment"
+                },
+                "href": {
+                    "type": "string",
+                    "description": "URL serving as reference for the attachment resource"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A narrative text describing the content of the attachment"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the related entity."
+                },
+                "url": {
+                    "type": "string",
+                    "description": "Link to the attachment media/content"
+                },
+                "@baseType": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the super-class"
+                },
+                "@schemaLocation": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "A URI to a JSON-Schema file that defines additional attributes and relationships"
+                },
+                "@type": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the sub-class entity name"
+                },
+                "@referredType": {
+                    "type": "string",
+                    "description": "The actual type of the target instance when needed for disambiguation."
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "AttachmentRefOrValue": {
+            "type": "object",
+            "description": "An attachment by value or by reference. For AttachmentRefOrValue, the attribute type,schemaLocation and referredType are related to the contained entity and not to AttchmentRefOrValue itself",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier for this particular attachment"
+                },
+                "href": {
+                    "type": "string",
+                    "description": "URI for this Attachment"
+                },
+                "attachmentType": {
+                    "type": "string",
+                    "description": "Attachment type such as video, picture"
+                },
+                "content": {
+                    "type": "string",
+                    "description": "The actual contents of the attachment object, if embedded, encoded as base64"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A narrative text describing the content of the attachment"
+                },
+                "mimeType": {
+                    "type": "string",
+                    "description": "Attachment mime type such as extension file for video, picture and document"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the attachment"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "Uniform Resource Locator, is a web page address (a subset of URI)"
+                },
+                "size": {
+                    "$ref": "#/definitions/Quantity",
+                    "description": "The size of the attachment."
+                },
+                "validFor": {
+                    "$ref": "#/definitions/TimePeriod",
+                    "description": "The period of time for which the attachment is valid"
+                },
+                "@baseType": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the super-class"
+                },
+                "@schemaLocation": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "A URI to a JSON-Schema file that defines additional attributes and relationships"
+                },
+                "@type": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the sub-class entity name"
+                },
+                "@referredType": {
+                    "type": "string",
+                    "description": "The actual type of the target instance when needed for disambiguation."
+                }
+            }
+        },
         "Characteristic": {
             "type": "object",
             "description": "Describes a given characteristic of an object or entity through a name/value pair.",
@@ -894,6 +2178,305 @@
                 "id"
             ]
         },
+        "LogicalResource": {
+            "type": "object",
+            "description": "Logic resource is a type of resource that describes the common set of attributes shared by all concrete logical resources (e.g. TPE, MSISDN, IP Addresses) in the inventory.",
+            "required": [
+                "href",
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Identifier of an instance of the resource. Required to be unique within the resource type.  Used in URIs as the identifier for specific instances of a type."
+                },
+                "href": {
+                    "type": "string",
+                    "description": "The URI for the object itself."
+                },
+                "category": {
+                    "type": "string",
+                    "description": "Category of the concrete resource. e.g Gold, Silver for MSISDN concrete resource"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "free-text description of the resource"
+                },
+                "endOperatingDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "A date time( DateTime). The date till the resource is operating"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A string used to give a name to the resource"
+                },
+                "resourceVersion": {
+                    "type": "string",
+                    "description": "A field that identifies the specific version of an instance of a resource."
+                },
+                "startOperatingDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "A date time( DateTime). The date from which the resource is operating"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "the value of the logical resource. E.g '0746712345' for  MSISDN's"
+                },
+                "lifecycleState": {
+                    "$ref": "#/definitions/ResourceLifecycleStateType",
+                    "description": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
+                },
+                "note": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Note"
+                    }
+                },
+                "relatedParty": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RelatedPartyRef"
+                    }
+                },
+                "relatedPlace": {
+                    "$ref": "#/definitions/RelatedPlaceRefOrValue"
+                },
+                "resourceAttachment": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AttachmentRefOrValue"
+                    }
+                },
+                "resourceCharacteristic": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Characteristic"
+                    }
+                },
+                "resourceRelationship": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResourceRelationship"
+                    }
+                },
+                "resourceSpecification": {
+                    "$ref": "#/definitions/ResourceSpecificationRef"
+                },
+                "@baseType": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the super-class"
+                },
+                "@schemaLocation": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "A URI to a JSON-Schema file that defines additional attributes and relationships"
+                },
+                "@type": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the sub-class entity name"
+                },
+                "@referredType": {
+                    "type": "string",
+                    "description": "The actual type of the target instance when needed for disambiguation."
+                }
+            }
+        },
+        "LogicalResource_Create": {
+            "type": "object",
+            "description": "Logic resource is a type of resource that describes the common set of attributes shared by all concrete logical resources (e.g. TPE, MSISDN, IP Addresses) in the inventory.\nSkipped properties: id,href",
+            "required": [
+                "href",
+                "id"
+            ],
+            "properties": {
+                "category": {
+                    "type": "string",
+                    "description": "Category of the concrete resource. e.g Gold, Silver for MSISDN concrete resource"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "free-text description of the resource"
+                },
+                "endOperatingDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "A date time( DateTime). The date till the resource is operating"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A string used to give a name to the resource"
+                },
+                "resourceVersion": {
+                    "type": "string",
+                    "description": "A field that identifies the specific version of an instance of a resource."
+                },
+                "startOperatingDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "A date time( DateTime). The date from which the resource is operating"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "the value of the logical resource. E.g '0746712345' for  MSISDN's"
+                },
+                "lifecycleState": {
+                    "$ref": "#/definitions/ResourceLifecycleStateType",
+                    "description": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
+                },
+                "note": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Note"
+                    }
+                },
+                "relatedParty": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RelatedPartyRef"
+                    }
+                },
+                "relatedPlace": {
+                    "$ref": "#/definitions/RelatedPlaceRefOrValue"
+                },
+                "resourceAttachment": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AttachmentRefOrValue"
+                    }
+                },
+                "resourceCharacteristic": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Characteristic"
+                    }
+                },
+                "resourceRelationship": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResourceRelationship"
+                    }
+                },
+                "resourceSpecification": {
+                    "$ref": "#/definitions/ResourceSpecificationRef"
+                },
+                "@baseType": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the super-class"
+                },
+                "@schemaLocation": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "A URI to a JSON-Schema file that defines additional attributes and relationships"
+                },
+                "@type": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the sub-class entity name"
+                },
+                "@referredType": {
+                    "type": "string",
+                    "description": "The actual type of the target instance when needed for disambiguation."
+                }
+            }
+        },
+        "LogicalResource_Update": {
+            "type": "object",
+            "description": "Logic resource is a type of resource that describes the common set of attributes shared by all concrete logical resources (e.g. TPE, MSISDN, IP Addresses) in the inventory.\nSkipped properties: id,href",
+            "required": [
+                "href",
+                "id"
+            ],
+            "properties": {
+                "category": {
+                    "type": "string",
+                    "description": "Category of the concrete resource. e.g Gold, Silver for MSISDN concrete resource"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "free-text description of the resource"
+                },
+                "endOperatingDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "A date time( DateTime). The date till the resource is operating"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A string used to give a name to the resource"
+                },
+                "resourceVersion": {
+                    "type": "string",
+                    "description": "A field that identifies the specific version of an instance of a resource."
+                },
+                "startOperatingDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "A date time( DateTime). The date from which the resource is operating"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "the value of the logical resource. E.g '0746712345' for  MSISDN's"
+                },
+                "lifecycleState": {
+                    "$ref": "#/definitions/ResourceLifecycleStateType",
+                    "description": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
+                },
+                "note": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Note"
+                    }
+                },
+                "relatedParty": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RelatedPartyRef"
+                    }
+                },
+                "relatedPlace": {
+                    "$ref": "#/definitions/RelatedPlaceRefOrValue"
+                },
+                "resourceAttachment": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AttachmentRefOrValue"
+                    }
+                },
+                "resourceCharacteristic": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Characteristic"
+                    }
+                },
+                "resourceRelationship": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResourceRelationship"
+                    }
+                },
+                "resourceSpecification": {
+                    "$ref": "#/definitions/ResourceSpecificationRef"
+                },
+                "@baseType": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the super-class"
+                },
+                "@schemaLocation": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "A URI to a JSON-Schema file that defines additional attributes and relationships"
+                },
+                "@type": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the sub-class entity name"
+                },
+                "@referredType": {
+                    "type": "string",
+                    "description": "The actual type of the target instance when needed for disambiguation."
+                }
+            }
+        },
         "Note": {
             "type": "object",
             "description": "Extra information about a given entity",
@@ -929,140 +2512,12 @@
                 }
             }
         },
-        "PartyRoleRef": {
+        "PhysicalResource": {
             "type": "object",
-            "description": "Party role reference. A party role represents the part played by a party in a given context.",
+            "description": "Physical resource is a type of resource that describes the common set of attributes shared by all concrete physical resources (e.g. EQUIPMENT) in the inventory.",
             "required": [
                 "href",
                 "id"
-            ],
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "Unique identifier of the product"
-                },
-                "href": {
-                    "type": "string",
-                    "description": "Reference of the product"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The name of the referred party role."
-                },
-                "partyId": {
-                    "type": "string",
-                    "description": "The identifier of the engaged party that is linked to the PartyRole object."
-                },
-                "partyName": {
-                    "type": "string",
-                    "description": "The name of the engaged party that is linked to the PartyRole object."
-                },
-                "@baseType": {
-                    "type": "string",
-                    "description": "When sub-classing, this defines the super-class"
-                },
-                "@schemaLocation": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "A URI to a JSON-Schema file that defines additional attributes and relationships"
-                },
-                "@type": {
-                    "type": "string",
-                    "description": "When sub-classing, this defines the sub-class entity name"
-                },
-                "@referredType": {
-                    "type": "string",
-                    "description": "The actual type of the target instance when needed for disambiguation."
-                }
-            }
-        },
-        "PlaceRef": {
-            "type": "object",
-            "description": "Place reference. PlaceRef defines the placeRefs where the products are sold or delivered.",
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "Unique identifier of a related entity."
-                },
-                "href": {
-                    "type": "string",
-                    "description": "Reference of the related entity."
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Name of the related entity."
-                },
-                "@baseType": {
-                    "type": "string",
-                    "description": "When sub-classing, this defines the super-class"
-                },
-                "@schemaLocation": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "A URI to a JSON-Schema file that defines additional attributes and relationships"
-                },
-                "@type": {
-                    "type": "string",
-                    "description": "When sub-classing, this defines the sub-class entity name"
-                },
-                "@referredType": {
-                    "type": "string",
-                    "description": "The actual type of the target instance when needed for disambiguation."
-                }
-            },
-            "required": [
-                "id"
-            ]
-        },
-        "RelatedPartyRef": {
-            "type": "object",
-            "description": "RelatedParty reference. A related party defines party or party role linked to a specific entity.",
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "Unique identifier of a related party"
-                },
-                "href": {
-                    "type": "string",
-                    "description": "Reference of the related party, could be a party reference or a party role reference"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Name of the related party"
-                },
-                "role": {
-                    "type": "string",
-                    "description": "Role of the related party."
-                },
-                "@baseType": {
-                    "type": "string",
-                    "description": "When sub-classing, this defines the super-class"
-                },
-                "@schemaLocation": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "A URI to a JSON-Schema file that defines additional attributes and relationships"
-                },
-                "@type": {
-                    "type": "string",
-                    "description": "When sub-classing, this defines the sub-class entity name"
-                },
-                "@referredType": {
-                    "type": "string",
-                    "description": "The actual type of the target instance when needed for disambiguation."
-                }
-            },
-            "required": [
-                "id"
-            ]
-        },
-        "Resource": {
-            "type": "object",
-            "description": "Resource is an abstract entity that describes the common set of attributes shared by all concrete resources (e.g. TPE, EQUIPMENT) in the inventory.",
-            "required": [
-                "href",
-                "id",
-                "name"
             ],
             "properties": {
                 "id": {
@@ -1112,13 +2567,13 @@
                     "format": "date-time",
                     "description": "A date time( DateTime). The date from which the resource is operating"
                 },
+                "versionNumber": {
+                    "type": "string",
+                    "description": "This is a string that identifies the version of this physical resource. This is an optional attribute."
+                },
                 "lifecycleState": {
                     "$ref": "#/definitions/ResourceLifecycleStateType",
                     "description": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
-                },
-                "lifecycleSubState": {
-                    "$ref": "#/definitions/ResourceLifecycleSubStateType",
-                    "description": "Tracks the lifecyclesubstate of the resource, e.g for lifecycleState:Planning subState: proposed, feasibility checked,..,for lifecycleState: Operating subState: activated, deactivated, working, not working,.. and so on."
                 },
                 "note": {
                     "type": "array",
@@ -1126,19 +2581,19 @@
                         "$ref": "#/definitions/Note"
                     }
                 },
-                "partyRole": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/PartyRoleRef"
-                    }
-                },
-                "place": {
-                    "$ref": "#/definitions/PlaceRef"
-                },
                 "relatedParty": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/RelatedPartyRef"
+                    }
+                },
+                "relatedPlace": {
+                    "$ref": "#/definitions/RelatedPlaceRefOrValue"
+                },
+                "resourceAttachment": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AttachmentRefOrValue"
                     }
                 },
                 "resourceCharacteristic": {
@@ -1172,6 +2627,503 @@
                 "@referredType": {
                     "type": "string",
                     "description": "The actual type of the target instance when needed for disambiguation."
+                }
+            }
+        },
+        "PhysicalResource_Create": {
+            "type": "object",
+            "description": "Physical resource is a type of resource that describes the common set of attributes shared by all concrete physical resources (e.g. EQUIPMENT) in the inventory.\nSkipped properties: id,href",
+            "required": [
+                "href",
+                "id",
+                "name"
+            ],
+            "properties": {
+                "category": {
+                    "type": "string",
+                    "description": "Category of the concrete resource. e.g Gold, Silver for MSISDN concrete resource"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "free-text description of the resource"
+                },
+                "endOperatingDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "A date time( DateTime). The date till the resource is operating"
+                },
+                "manufactureDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "This is a string attribute that defines the date of manufacture of this item in the fixed format \"dd/mm/yyyy\". This is an optional attribute."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A string used to give a name to the resource"
+                },
+                "powerState": {
+                    "type": "string",
+                    "description": "This defines the current power status of the hardware item. Values include:\n\n  0:  Unknown\n  1:  Not Applicable\n  2:  No Power Applied\n  3: Full Power Applied\n  4:  Power Save - Normal\n  5:  Power Save - Degraded\n  6:  Power Save - Standby\n  7:  Power Save - Critical\n  8:  Power Save - Low Power Mode\n  9:  Power Save - Unknown\n 10: Power Cycle\n 11: Power Warning\n 12: Power Off"
+                },
+                "resourceVersion": {
+                    "type": "string",
+                    "description": "A field that identifies the specific version of an instance of a resource."
+                },
+                "serialNumber": {
+                    "type": "string",
+                    "description": "This is a string that represents a manufacturer-allocated number used to identify different instances of the same hardware item. The ModelNumber and PartNumber attributes are used to identify different types of hardware items. This is a REQUIRED attribute."
+                },
+                "startOperatingDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "A date time( DateTime). The date from which the resource is operating"
+                },
+                "versionNumber": {
+                    "type": "string",
+                    "description": "This is a string that identifies the version of this physical resource. This is an optional attribute."
+                },
+                "lifecycleState": {
+                    "$ref": "#/definitions/ResourceLifecycleStateType",
+                    "description": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
+                },
+                "note": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Note"
+                    }
+                },
+                "relatedParty": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RelatedPartyRef"
+                    }
+                },
+                "relatedPlace": {
+                    "$ref": "#/definitions/RelatedPlaceRefOrValue"
+                },
+                "resourceAttachment": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AttachmentRefOrValue"
+                    }
+                },
+                "resourceCharacteristic": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Characteristic"
+                    }
+                },
+                "resourceRelationship": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResourceRelationship"
+                    }
+                },
+                "resourceSpecification": {
+                    "$ref": "#/definitions/ResourceSpecificationRef"
+                },
+                "@baseType": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the super-class"
+                },
+                "@schemaLocation": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "A URI to a JSON-Schema file that defines additional attributes and relationships"
+                },
+                "@type": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the sub-class entity name"
+                },
+                "@referredType": {
+                    "type": "string",
+                    "description": "The actual type of the target instance when needed for disambiguation."
+                }
+            }
+        },
+        "PhysicalResource_Update": {
+            "type": "object",
+            "description": "Physical resource is a type of resource that describes the common set of attributes shared by all concrete physical resources (e.g. EQUIPMENT) in the inventory.\nSkipped properties: id,href",
+            "required": [
+                "href",
+                "id"
+            ],
+            "properties": {
+                "category": {
+                    "type": "string",
+                    "description": "Category of the concrete resource. e.g Gold, Silver for MSISDN concrete resource"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "free-text description of the resource"
+                },
+                "endOperatingDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "A date time( DateTime). The date till the resource is operating"
+                },
+                "manufactureDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "This is a string attribute that defines the date of manufacture of this item in the fixed format \"dd/mm/yyyy\". This is an optional attribute."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A string used to give a name to the resource"
+                },
+                "powerState": {
+                    "type": "string",
+                    "description": "This defines the current power status of the hardware item. Values include:\n\n  0:  Unknown\n  1:  Not Applicable\n  2:  No Power Applied\n  3: Full Power Applied\n  4:  Power Save - Normal\n  5:  Power Save - Degraded\n  6:  Power Save - Standby\n  7:  Power Save - Critical\n  8:  Power Save - Low Power Mode\n  9:  Power Save - Unknown\n 10: Power Cycle\n 11: Power Warning\n 12: Power Off"
+                },
+                "resourceVersion": {
+                    "type": "string",
+                    "description": "A field that identifies the specific version of an instance of a resource."
+                },
+                "serialNumber": {
+                    "type": "string",
+                    "description": "This is a string that represents a manufacturer-allocated number used to identify different instances of the same hardware item. The ModelNumber and PartNumber attributes are used to identify different types of hardware items. This is a REQUIRED attribute."
+                },
+                "startOperatingDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "A date time( DateTime). The date from which the resource is operating"
+                },
+                "versionNumber": {
+                    "type": "string",
+                    "description": "This is a string that identifies the version of this physical resource. This is an optional attribute."
+                },
+                "lifecycleState": {
+                    "$ref": "#/definitions/ResourceLifecycleStateType",
+                    "description": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
+                },
+                "note": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Note"
+                    }
+                },
+                "relatedParty": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RelatedPartyRef"
+                    }
+                },
+                "relatedPlace": {
+                    "$ref": "#/definitions/RelatedPlaceRefOrValue"
+                },
+                "resourceAttachment": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AttachmentRefOrValue"
+                    }
+                },
+                "resourceCharacteristic": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Characteristic"
+                    }
+                },
+                "resourceRelationship": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResourceRelationship"
+                    }
+                },
+                "resourceSpecification": {
+                    "$ref": "#/definitions/ResourceSpecificationRef"
+                },
+                "@baseType": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the super-class"
+                },
+                "@schemaLocation": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "A URI to a JSON-Schema file that defines additional attributes and relationships"
+                },
+                "@type": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the sub-class entity name"
+                },
+                "@referredType": {
+                    "type": "string",
+                    "description": "The actual type of the target instance when needed for disambiguation."
+                }
+            }
+        },
+        "Place": {
+            "type": "object",
+            "description": "Place reference. Place defines the places where the products are sold or delivered.",
+            "required": [
+                "href",
+                "id",
+                "role"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier of the place"
+                },
+                "href": {
+                    "type": "string",
+                    "description": "Unique reference of the place"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A user-friendly name for the place, such as \"Paris Store\", \"London Store\", \"Main Home\""
+                },
+                "role": {
+                    "type": "string",
+                    "description": "Role of the place (for instance: 'home delivery', 'shop retrieval')"
+                },
+                "@baseType": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the super-class"
+                },
+                "@schemaLocation": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "A URI to a JSON-Schema file that defines additional attributes and relationships"
+                },
+                "@type": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the sub-class entity name"
+                }
+            }
+        },
+        "PlaceRef": {
+            "type": "object",
+            "description": "Place reference. PlaceRef defines the placeRefs where the products are sold or delivered.",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier of a related entity."
+                },
+                "href": {
+                    "type": "string",
+                    "description": "Reference of the related entity."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the related entity."
+                },
+                "@baseType": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the super-class"
+                },
+                "@schemaLocation": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "A URI to a JSON-Schema file that defines additional attributes and relationships"
+                },
+                "@type": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the sub-class entity name"
+                },
+                "@referredType": {
+                    "type": "string",
+                    "description": "The actual type of the target instance when needed for disambiguation."
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "Quantity": {
+            "type": "object",
+            "description": "An amount in a given unit",
+            "properties": {
+                "amount": {
+                    "default": 1,
+                    "type": "number",
+                    "format": "float",
+                    "description": "Numeric value in a given unit"
+                },
+                "units": {
+                    "type": "string",
+                    "description": "Unit"
+                }
+            }
+        },
+        "RelatedPartyRef": {
+            "type": "object",
+            "description": "RelatedParty reference. A related party defines party or party role linked to a specific entity.",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier of a related party"
+                },
+                "href": {
+                    "type": "string",
+                    "description": "Reference of the related party, could be a party reference or a party role reference"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the related party"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "Role of the related party."
+                },
+                "@baseType": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the super-class"
+                },
+                "@schemaLocation": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "A URI to a JSON-Schema file that defines additional attributes and relationships"
+                },
+                "@type": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the sub-class entity name"
+                },
+                "@referredType": {
+                    "type": "string",
+                    "description": "The actual type of the target instance when needed for disambiguation."
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "RelatedPlaceRefOrValue": {
+            "type": "object",
+            "description": "Related Entity reference. A related place defines a place described by reference or by value linked to a specific entity. The polymorphic attributes @type, @schemaLocation & @referredType are related to the place entity and not the RelatedPlaceRefOrValue class itself",
+            "required": [
+                "href",
+                "id",
+                "role"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier of the place"
+                },
+                "href": {
+                    "type": "string",
+                    "description": "Unique reference of the place"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A user-friendly name for the place, such as \"Paris Store\", \"London Store\", \"Main Home\""
+                },
+                "role": {
+                    "type": "string"
+                },
+                "@baseType": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the super-class"
+                },
+                "@schemaLocation": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "A URI to a JSON-Schema file that defines additional attributes and relationships"
+                },
+                "@type": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the sub-class entity name"
+                },
+                "@referredType": {
+                    "type": "string",
+                    "description": "The actual type of the target instance when needed for disambiguation."
+                }
+            }
+        },
+        "Resource": {
+            "type": "object",
+            "description": "Resource is an abstract entity that describes the common set of attributes shared by all concrete resources (e.g. TPE, EQUIPMENT) in the inventory.",
+            "required": [
+                "href",
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Identifier of an instance of the resource. Required to be unique within the resource type.  Used in URIs as the identifier for specific instances of a type."
+                },
+                "href": {
+                    "type": "string",
+                    "description": "The URI for the object itself."
+                },
+                "category": {
+                    "type": "string",
+                    "description": "Category of the concrete resource. e.g Gold, Silver for MSISDN concrete resource"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "free-text description of the resource"
+                },
+                "endOperatingDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "A date time( DateTime). The date till the resource is operating"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A string used to give a name to the resource"
+                },
+                "resourceVersion": {
+                    "type": "string",
+                    "description": "A field that identifies the specific version of an instance of a resource."
+                },
+                "startOperatingDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "A date time( DateTime). The date from which the resource is operating"
+                },
+                "lifecycleState": {
+                    "$ref": "#/definitions/ResourceLifecycleStateType",
+                    "description": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
+                },
+                "note": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Note"
+                    }
+                },
+                "relatedParty": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RelatedPartyRef"
+                    }
+                },
+                "relatedPlace": {
+                    "$ref": "#/definitions/RelatedPlaceRefOrValue"
+                },
+                "resourceAttachment": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AttachmentRefOrValue"
+                    }
+                },
+                "resourceCharacteristic": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Characteristic"
+                    }
+                },
+                "resourceRelationship": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResourceRelationship"
+                    }
+                },
+                "resourceSpecification": {
+                    "$ref": "#/definitions/ResourceSpecificationRef"
+                },
+                "@baseType": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the super-class"
+                },
+                "@schemaLocation": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "A URI to a JSON-Schema file that defines additional attributes and relationships"
+                },
+                "@type": {
+                    "type": "string",
+                    "description": "When sub-classing, this defines the sub-class entity name"
                 }
             }
         },
@@ -1197,26 +3149,13 @@
                     "format": "date-time",
                     "description": "A date time( DateTime). The date till the resource is operating"
                 },
-                "manufactureDate": {
-                    "type": "string",
-                    "format": "date-time",
-                    "description": "This is a string attribute that defines the date of manufacture of this item in the fixed format \"dd/mm/yyyy\". This is an optional attribute."
-                },
                 "name": {
                     "type": "string",
                     "description": "A string used to give a name to the resource"
                 },
-                "powerState": {
-                    "type": "string",
-                    "description": "This defines the current power status of the hardware item. Values include:\n\n  0:  Unknown\n  1:  Not Applicable\n  2:  No Power Applied\n  3: Full Power Applied\n  4:  Power Save - Normal\n  5:  Power Save - Degraded\n  6:  Power Save - Standby\n  7:  Power Save - Critical\n  8:  Power Save - Low Power Mode\n  9:  Power Save - Unknown\n 10: Power Cycle\n 11: Power Warning\n 12: Power Off"
-                },
                 "resourceVersion": {
                     "type": "string",
                     "description": "A field that identifies the specific version of an instance of a resource."
-                },
-                "serialNumber": {
-                    "type": "string",
-                    "description": "This is a string that represents a manufacturer-allocated number used to identify different instances of the same hardware item. The ModelNumber and PartNumber attributes are used to identify different types of hardware items. This is a REQUIRED attribute."
                 },
                 "startOperatingDate": {
                     "type": "string",
@@ -1227,29 +3166,25 @@
                     "$ref": "#/definitions/ResourceLifecycleStateType",
                     "description": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
                 },
-                "lifecycleSubState": {
-                    "$ref": "#/definitions/ResourceLifecycleSubStateType",
-                    "description": "Tracks the lifecyclesubstate of the resource, e.g for lifecycleState:Planning subState: proposed, feasibility checked,..,for lifecycleState: Operating subState: activated, deactivated, working, not working,.. and so on."
-                },
                 "note": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/Note"
                     }
                 },
-                "partyRole": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/PartyRoleRef"
-                    }
-                },
-                "place": {
-                    "$ref": "#/definitions/PlaceRef"
-                },
                 "relatedParty": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/RelatedPartyRef"
+                    }
+                },
+                "relatedPlace": {
+                    "$ref": "#/definitions/RelatedPlaceRefOrValue"
+                },
+                "resourceAttachment": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AttachmentRefOrValue"
                     }
                 },
                 "resourceCharacteristic": {
@@ -1279,10 +3214,6 @@
                 "@type": {
                     "type": "string",
                     "description": "When sub-classing, this defines the sub-class entity name"
-                },
-                "@referredType": {
-                    "type": "string",
-                    "description": "The actual type of the target instance when needed for disambiguation."
                 }
             }
         },
@@ -1291,8 +3222,7 @@
             "description": "Resource is an abstract entity that describes the common set of attributes shared by all concrete resources (e.g. TPE, EQUIPMENT) in the inventory.\nSkipped properties: id,href",
             "required": [
                 "href",
-                "id",
-                "name"
+                "id"
             ],
             "properties": {
                 "category": {
@@ -1308,26 +3238,13 @@
                     "format": "date-time",
                     "description": "A date time( DateTime). The date till the resource is operating"
                 },
-                "manufactureDate": {
-                    "type": "string",
-                    "format": "date-time",
-                    "description": "This is a string attribute that defines the date of manufacture of this item in the fixed format \"dd/mm/yyyy\". This is an optional attribute."
-                },
                 "name": {
                     "type": "string",
                     "description": "A string used to give a name to the resource"
                 },
-                "powerState": {
-                    "type": "string",
-                    "description": "This defines the current power status of the hardware item. Values include:\n\n  0:  Unknown\n  1:  Not Applicable\n  2:  No Power Applied\n  3: Full Power Applied\n  4:  Power Save - Normal\n  5:  Power Save - Degraded\n  6:  Power Save - Standby\n  7:  Power Save - Critical\n  8:  Power Save - Low Power Mode\n  9:  Power Save - Unknown\n 10: Power Cycle\n 11: Power Warning\n 12: Power Off"
-                },
                 "resourceVersion": {
                     "type": "string",
                     "description": "A field that identifies the specific version of an instance of a resource."
-                },
-                "serialNumber": {
-                    "type": "string",
-                    "description": "This is a string that represents a manufacturer-allocated number used to identify different instances of the same hardware item. The ModelNumber and PartNumber attributes are used to identify different types of hardware items. This is a REQUIRED attribute."
                 },
                 "startOperatingDate": {
                     "type": "string",
@@ -1338,29 +3255,25 @@
                     "$ref": "#/definitions/ResourceLifecycleStateType",
                     "description": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
                 },
-                "lifecycleSubState": {
-                    "$ref": "#/definitions/ResourceLifecycleSubStateType",
-                    "description": "Tracks the lifecyclesubstate of the resource, e.g for lifecycleState:Planning subState: proposed, feasibility checked,..,for lifecycleState: Operating subState: activated, deactivated, working, not working,.. and so on."
-                },
                 "note": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/Note"
                     }
                 },
-                "partyRole": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/PartyRoleRef"
-                    }
-                },
-                "place": {
-                    "$ref": "#/definitions/PlaceRef"
-                },
                 "relatedParty": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/RelatedPartyRef"
+                    }
+                },
+                "relatedPlace": {
+                    "$ref": "#/definitions/RelatedPlaceRefOrValue"
+                },
+                "resourceAttachment": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AttachmentRefOrValue"
                     }
                 },
                 "resourceCharacteristic": {
@@ -1390,10 +3303,6 @@
                 "@type": {
                     "type": "string",
                     "description": "When sub-classing, this defines the sub-class entity name"
-                },
-                "@referredType": {
-                    "type": "string",
-                    "description": "The actual type of the target instance when needed for disambiguation."
                 }
             }
         },
@@ -1405,27 +3314,6 @@
                 "installing",
                 "operating",
                 "retiring"
-            ]
-        },
-        "ResourceLifecycleSubStateType": {
-            "type": "string",
-            "description": "ResourceLifecycleSubState enumerations",
-            "enum": [
-                "proposed",
-                "feasibility checked",
-                "designed",
-                "ordered",
-                "activated",
-                "deactivated",
-                "working",
-                "working meets all SLAs",
-                "working meets some SLAs",
-                "working meets no SLA",
-                "not working",
-                "available",
-                "not available",
-                "assigned",
-                "reserved"
             ]
         },
         "ResourceRef": {
@@ -1532,6 +3420,22 @@
                 "@referredType": {
                     "type": "string",
                     "description": "The actual type of the target instance when needed for disambiguation."
+                }
+            }
+        },
+        "TimePeriod": {
+            "type": "object",
+            "description": "A period of time, either as a deadline (endDateTime only) a startDateTime only, or both",
+            "properties": {
+                "endDateTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "End of the time period, using IETC-RFC-3339 format"
+                },
+                "startDateTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Start of the time period, using IETC-RFC-3339 format. If you define a start, you must also define an end"
                 }
             }
         },
@@ -1831,6 +3735,266 @@
                 "resource": {
                     "description": "The involved resource data for the event",
                     "$ref": "#/definitions/Resource"
+                }
+            }
+        },
+        "PhysicalResourceCreateEvent": {
+            "type": "object",
+            "description": "The notification data structure",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Identifier of the Process flow"
+                },
+                "href": {
+                    "type": "string",
+                    "description": "Reference of the ProcessFlow"
+                },
+                "eventId": {
+                    "type": "string",
+                    "description": "The identifier of the notification."
+                },
+                "eventTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Time of the event occurrence."
+                },
+                "eventType": {
+                    "type": "string",
+                    "description": "The type of the notification."
+                },
+                "correlationId": {
+                    "type": "string",
+                    "description": "The correlation id for this event."
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "The domain of the event."
+                },
+                "title": {
+                    "type": "string",
+                    "description": "The title of the event."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "An explnatory of the event."
+                },
+                "priority": {
+                    "type": "string",
+                    "description": "A priority."
+                },
+                "timeOcurred": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "The time the event occured."
+                },
+                "event": {
+                    "description": "The event payload linked to the involved resource object",
+                    "$ref": "#/definitions/PhysicalResourceCreateEventPayload"
+                }
+            }
+        },
+        "PhysicalResourceCreateEventPayload": {
+            "type": "object",
+            "description": "The event data structure",
+            "properties": {
+                "physicalResource": {
+                    "description": "The involved resource data for the event",
+                    "$ref": "#/definitions/PhysicalResource"
+                }
+            }
+        },
+        "PhysicalResourceAttributeValueChangeEvent": {
+            "type": "object",
+            "description": "The notification data structure",
+            "properties": {
+                "eventId": {
+                    "type": "string",
+                    "description": "The identifier of the notification."
+                },
+                "eventTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Time of the event occurrence."
+                },
+                "eventType": {
+                    "type": "string",
+                    "description": "The type of the notification."
+                },
+                "correlationId": {
+                    "type": "string",
+                    "description": "The correlation id for this event."
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "The domain of the event."
+                },
+                "title": {
+                    "type": "string",
+                    "description": "The title of the event."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "An explnatory of the event."
+                },
+                "priority": {
+                    "type": "string",
+                    "description": "A priority."
+                },
+                "timeOcurred": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "The time the event occured."
+                },
+                "fieldPath": {
+                    "type": "string",
+                    "description": "The path identifying the object field concerned by this notification."
+                },
+                "event": {
+                    "description": "The event payload linked to the involved resource object",
+                    "$ref": "#/definitions/PhysicalResourceAttributeValueChangeEventPayload"
+                }
+            }
+        },
+        "PhysicalResourceAttributeValueChangeEventPayload": {
+            "type": "object",
+            "description": "The event data structure",
+            "properties": {
+                "physicalResource": {
+                    "description": "The involved resource data for the event",
+                    "$ref": "#/definitions/PhysicalResource"
+                }
+            }
+        },
+        "PhysicalResourceStateChangeEvent": {
+            "type": "object",
+            "description": "The notification data structure",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Identifier of the Process flow"
+                },
+                "href": {
+                    "type": "string",
+                    "description": "Reference of the ProcessFlow"
+                },
+                "eventId": {
+                    "type": "string",
+                    "description": "The identifier of the notification."
+                },
+                "eventTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Time of the event occurrence."
+                },
+                "eventType": {
+                    "type": "string",
+                    "description": "The type of the notification."
+                },
+                "correlationId": {
+                    "type": "string",
+                    "description": "The correlation id for this event."
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "The domain of the event."
+                },
+                "title": {
+                    "type": "string",
+                    "description": "The title of the event."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "An explnatory of the event."
+                },
+                "priority": {
+                    "type": "string",
+                    "description": "A priority."
+                },
+                "timeOcurred": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "The time the event occured."
+                },
+                "event": {
+                    "description": "The event payload linked to the involved resource object",
+                    "$ref": "#/definitions/PhysicalResourceStateChangeEventPayload"
+                }
+            }
+        },
+        "PhysicalResourceStateChangeEventPayload": {
+            "type": "object",
+            "description": "The event data structure",
+            "properties": {
+                "physicalResource": {
+                    "description": "The involved resource data for the event",
+                    "$ref": "#/definitions/PhysicalResource"
+                }
+            }
+        },
+        "PhysicalResourceDeleteEvent": {
+            "type": "object",
+            "description": "The notification data structure",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Identifier of the Process flow"
+                },
+                "href": {
+                    "type": "string",
+                    "description": "Reference of the ProcessFlow"
+                },
+                "eventId": {
+                    "type": "string",
+                    "description": "The identifier of the notification."
+                },
+                "eventTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Time of the event occurrence."
+                },
+                "eventType": {
+                    "type": "string",
+                    "description": "The type of the notification."
+                },
+                "correlationId": {
+                    "type": "string",
+                    "description": "The correlation id for this event."
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "The domain of the event."
+                },
+                "title": {
+                    "type": "string",
+                    "description": "The title of the event."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "An explnatory of the event."
+                },
+                "priority": {
+                    "type": "string",
+                    "description": "A priority."
+                },
+                "timeOcurred": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "The time the event occured."
+                },
+                "event": {
+                    "description": "The event payload linked to the involved resource object",
+                    "$ref": "#/definitions/PhysicalResourceDeleteEventPayload"
+                }
+            }
+        },
+        "PhysicalResourceDeleteEventPayload": {
+            "type": "object",
+            "description": "The event data structure",
+            "properties": {
+                "physicalResource": {
+                    "description": "The involved resource data for the event",
+                    "$ref": "#/definitions/PhysicalResource"
                 }
             }
         },

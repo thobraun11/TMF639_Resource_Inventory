@@ -10,11 +10,36 @@
             ],
             "resources": {
                 "ANY": [
-                    "Resource"
+                    "Resource",
+                    "PhysicalResource",
+                    "LogicalResource"
                 ]
             },
             "rules": {
                 "Resource": {
+                    "ANY": {
+                        "operations": [
+                            "GET",
+                            "POST",
+                            "PATCH",
+                            "DELETE"
+                        ],
+                        "mandatory in post": [
+                            "name"
+                        ],
+                        "non patchable": [
+                            "href",
+                            "id"
+                        ],
+                        "notifications": [
+                            "create",
+                            "attributeValueChange",
+                            "stateChange",
+                            "delete"
+                        ]
+                    }
+                },
+                "PhysicalResource": {
                     "ANY": {
                         "operations": [
                             "GET",

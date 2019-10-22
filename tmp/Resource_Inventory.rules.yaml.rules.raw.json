@@ -6,9 +6,22 @@
         "version": "4.0",
         "flavors": "regular",
         "resources": [
-            "Resource"
+            "Resource",
+            "PhysicalResource",
+            "LogicalResource"
         ],
         "rules Resource": {
+            "operations": "GET,POST,PATCH,DELETE",
+            "mandatory in post": "name",
+            "patchable": "ALL EXCEPT href,id",
+            "notifications": [
+                "create",
+                "attributeValueChange",
+                "stateChange",
+                "delete"
+            ]
+        },
+        "rules PhysicalResource": {
             "operations": "GET,POST,PATCH,DELETE",
             "mandatory in post": "name",
             "patchable": "ALL EXCEPT href,id",

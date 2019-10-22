@@ -1,25 +1,25 @@
 {
     "category": "a string ...",
     "description": "This  logical resource ...",
-    "endOperatingDate": "2019-07-04T00:00",
-    "href": "https:/host:port/tmf-api/logicalResource/v1/logicalResource/1045",
-    "id": "1045",
-    "lifecycleState": "a string ...",
+    "endOperatingDate": "2019-10-22T00:00",
+    "href": "https:/host:port/tmf-api/logicalResource/v1/logicalResource/6437",
+    "id": "6437",
     "name": "a string ...",
-    "startOperatingDate": "2019-07-04T00:00",
-    "version": "a string ...",
+    "resourceVersion": "a string ...",
+    "startOperatingDate": "2019-10-22T00:00",
     "value": "a string ...",
-    "characteristic": [
-        {}
-    ],
+    "lifecycleState": {},
     "note": [
         {}
     ],
-    "partyRole": [
+    "relatedParty": [
         {}
     ],
-    "place": {},
-    "relatedParty": [
+    "relatedPlace": {},
+    "resourceAttachment": [
+        {}
+    ],
+    "resourceCharacteristic": [
         {}
     ],
     "resourceRelationship": [

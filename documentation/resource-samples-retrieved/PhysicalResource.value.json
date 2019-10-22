@@ -1,32 +1,32 @@
 {
     "category": "a string ...",
     "description": "This  physical resource ...",
-    "endOperatingDate": "2019-07-04T00:00",
-    "href": "https:/host:port/tmf-api/physicalResource/v1/physicalResource/7839",
-    "id": "7839",
-    "lifecycleState": "a string ...",
+    "endOperatingDate": "2019-10-22T00:00",
+    "href": "https:/host:port/tmf-api/physicalResource/v1/physicalResource/9510",
+    "id": "9510",
     "name": "a string ...",
-    "startOperatingDate": "2019-07-04T00:00",
-    "version": "a string ...",
-    "manufactureDate": "2019-07-04T00:00",
+    "resourceVersion": "a string ...",
+    "startOperatingDate": "2019-10-22T00:00",
+    "manufactureDate": "2019-10-22T00:00",
     "powerState": "a string ...",
-    "resourceSpecification": {},
     "serialNumber": "a string ...",
     "versionNumber": "a string ...",
-    "characteristic": [
-        {}
-    ],
+    "lifecycleState": {},
     "note": [
         {}
     ],
-    "partyRole": [
+    "relatedParty": [
         {}
     ],
-    "place": {},
-    "relatedParty": [
+    "relatedPlace": {},
+    "resourceAttachment": [
+        {}
+    ],
+    "resourceCharacteristic": [
         {}
     ],
     "resourceRelationship": [
         {}
-    ]
+    ],
+    "resourceSpecification": {}
 }

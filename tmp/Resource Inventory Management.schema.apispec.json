@@ -6,29 +6,318 @@
     "basePath": "/tmf-api/resourceInventoryManagement/v4/",
     "description": "This is Swagger UI environment generated for the TMF Resource Inventory Management specification",
     "regularResources": [
+        "logicalResource",
+        "physicalResource",
         "resource"
     ],
     "eventResources": [],
     "usedClassesInRegularApi": [
         "Any",
+        "Attachment",
+        "AttachmentRef",
+        "AttachmentRefOrValue",
         "Characteristic",
         "EntityRef",
+        "LogicalResource",
         "Note",
-        "PartyRoleRef",
+        "PhysicalResource",
+        "Place",
         "PlaceRef",
+        "Quantity",
         "RelatedPartyRef",
+        "RelatedPlaceRefOrValue",
         "Resource",
         "ResourceLifecycleStateType",
-        "ResourceLifecycleSubStateType",
         "ResourceRef",
         "ResourceRelationship",
-        "ResourceSpecificationRef"
+        "ResourceSpecificationRef",
+        "TimePeriod"
     ],
     "usedClassesInEventsApi": [],
     "resourceClasses": [
+        "LogicalResource",
+        "PhysicalResource",
         "Resource"
     ],
     "resources": [
+        {
+            "name": "logicalResource",
+            "class": "LogicalResource",
+            "documentation": "Logic resource is a type of resource that describes the common set of attributes shared by all concrete logical resources (e.g. TPE, MSISDN, IP Addresses) in the inventory.",
+            "actions": [
+                "list",
+                "retrieve",
+                "create",
+                "update",
+                "partialupdate",
+                "delete"
+            ],
+            "attributes": [
+                "category",
+                "description",
+                "endOperatingDate",
+                "href",
+                "id",
+                "name",
+                "resourceVersion",
+                "startOperatingDate",
+                "@referredType",
+                "value",
+                "lifecycleState",
+                "note",
+                "relatedParty",
+                "relatedPlace",
+                "resourceAttachment",
+                "resourceCharacteristic",
+                "resourceRelationship",
+                "resourceSpecification"
+            ],
+            "attributeDetails": {
+                "category": {
+                    "type": "String",
+                    "multiplicity": "0..1",
+                    "documentation": "Category of the concrete resource. e.g Gold, Silver for MSISDN concrete resource"
+                },
+                "description": {
+                    "type": "String",
+                    "multiplicity": "0..1",
+                    "documentation": "free-text description of the resource"
+                },
+                "endOperatingDate": {
+                    "type": "DateTime",
+                    "multiplicity": "0..1",
+                    "documentation": "A date time( DateTime). The date till the resource is operating"
+                },
+                "href": {
+                    "type": "String",
+                    "multiplicity": "1",
+                    "documentation": "The URI for the object itself."
+                },
+                "id": {
+                    "type": "String",
+                    "multiplicity": "1",
+                    "documentation": "Identifier of an instance of the resource. Required to be unique within the resource type.  Used in URIs as the identifier for specific instances of a type."
+                },
+                "name": {
+                    "type": "String",
+                    "multiplicity": "0..1",
+                    "documentation": "A string used to give a name to the resource"
+                },
+                "resourceVersion": {
+                    "type": "String",
+                    "multiplicity": "0..1",
+                    "documentation": "A field that identifies the specific version of an instance of a resource."
+                },
+                "startOperatingDate": {
+                    "type": "DateTime",
+                    "multiplicity": "0..1",
+                    "documentation": "A date time( DateTime). The date from which the resource is operating"
+                },
+                "@referredType": {
+                    "type": "String",
+                    "multiplicity": "0..1",
+                    "documentation": "The actual type of the target instance when needed for disambiguation."
+                },
+                "value": {
+                    "type": "String",
+                    "multiplicity": "0..1",
+                    "documentation": "the value of the logical resource. E.g '0746712345' for  MSISDN's"
+                },
+                "lifecycleState": {
+                    "type": "ResourceLifecycleStateType",
+                    "multiplicity": "0..1",
+                    "enumValues": [
+                        "planning",
+                        "installing",
+                        "operating",
+                        "retiring"
+                    ],
+                    "documentation": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
+                },
+                "note": {
+                    "type": "Note",
+                    "multiplicity": "*",
+                    "documentation": "Extra information about a given entity"
+                },
+                "relatedParty": {
+                    "type": "RelatedPartyRef",
+                    "multiplicity": "*",
+                    "documentation": "RelatedParty reference. A related party defines party or party role linked to a specific entity."
+                },
+                "relatedPlace": {
+                    "type": "RelatedPlaceRefOrValue",
+                    "multiplicity": "0..1",
+                    "documentation": "Related Entity reference. A related place defines a place described by reference or by value linked to a specific entity. The polymorphic attributes @type, @schemaLocation & @referredType are related to the place entity and not the RelatedPlaceRefOrValue class itself"
+                },
+                "resourceAttachment": {
+                    "type": "AttachmentRefOrValue",
+                    "multiplicity": "*",
+                    "documentation": "An attachment by value or by reference. For AttachmentRefOrValue, the attribute type,schemaLocation and referredType are related to the contained entity and not to AttchmentRefOrValue itself"
+                },
+                "resourceCharacteristic": {
+                    "type": "Characteristic",
+                    "multiplicity": "*",
+                    "documentation": "Describes a given characteristic of an object or entity through a name/value pair."
+                },
+                "resourceRelationship": {
+                    "type": "ResourceRelationship",
+                    "multiplicity": "*"
+                },
+                "resourceSpecification": {
+                    "type": "ResourceSpecificationRef",
+                    "multiplicity": "0..1",
+                    "documentation": "Resource Specification reference: The ResourceSpecification is required to realize a ProductSpecification."
+                }
+            }
+        },
+        {
+            "name": "physicalResource",
+            "class": "PhysicalResource",
+            "documentation": "Physical resource is a type of resource that describes the common set of attributes shared by all concrete physical resources (e.g. EQUIPMENT) in the inventory.",
+            "actions": [
+                "list",
+                "retrieve",
+                "create",
+                "update",
+                "partialupdate",
+                "delete"
+            ],
+            "attributes": [
+                "category",
+                "description",
+                "endOperatingDate",
+                "href",
+                "id",
+                "name",
+                "resourceVersion",
+                "startOperatingDate",
+                "@referredType",
+                "manufactureDate",
+                "powerState",
+                "serialNumber",
+                "versionNumber",
+                "lifecycleState",
+                "note",
+                "relatedParty",
+                "relatedPlace",
+                "resourceAttachment",
+                "resourceCharacteristic",
+                "resourceRelationship",
+                "resourceSpecification"
+            ],
+            "attributeDetails": {
+                "category": {
+                    "type": "String",
+                    "multiplicity": "0..1",
+                    "documentation": "Category of the concrete resource. e.g Gold, Silver for MSISDN concrete resource"
+                },
+                "description": {
+                    "type": "String",
+                    "multiplicity": "0..1",
+                    "documentation": "free-text description of the resource"
+                },
+                "endOperatingDate": {
+                    "type": "DateTime",
+                    "multiplicity": "0..1",
+                    "documentation": "A date time( DateTime). The date till the resource is operating"
+                },
+                "href": {
+                    "type": "String",
+                    "multiplicity": "1",
+                    "documentation": "The URI for the object itself."
+                },
+                "id": {
+                    "type": "String",
+                    "multiplicity": "1",
+                    "documentation": "Identifier of an instance of the resource. Required to be unique within the resource type.  Used in URIs as the identifier for specific instances of a type."
+                },
+                "name": {
+                    "type": "String",
+                    "multiplicity": "0..1",
+                    "documentation": "A string used to give a name to the resource"
+                },
+                "resourceVersion": {
+                    "type": "String",
+                    "multiplicity": "0..1",
+                    "documentation": "A field that identifies the specific version of an instance of a resource."
+                },
+                "startOperatingDate": {
+                    "type": "DateTime",
+                    "multiplicity": "0..1",
+                    "documentation": "A date time( DateTime). The date from which the resource is operating"
+                },
+                "@referredType": {
+                    "type": "String",
+                    "multiplicity": "0..1",
+                    "documentation": "The actual type of the target instance when needed for disambiguation."
+                },
+                "manufactureDate": {
+                    "type": "DateTime",
+                    "multiplicity": "0..1",
+                    "documentation": "This is a string attribute that defines the date of manufacture of this item in the fixed format \"dd/mm/yyyy\". This is an optional attribute."
+                },
+                "powerState": {
+                    "type": "String",
+                    "multiplicity": "0..1",
+                    "documentation": "This defines the current power status of the hardware item. Values include:\n\n  0:  Unknown\n  1:  Not Applicable\n  2:  No Power Applied\n  3: Full Power Applied\n  4:  Power Save - Normal\n  5:  Power Save - Degraded\n  6:  Power Save - Standby\n  7:  Power Save - Critical\n  8:  Power Save - Low Power Mode\n  9:  Power Save - Unknown\n 10: Power Cycle\n 11: Power Warning\n 12: Power Off"
+                },
+                "serialNumber": {
+                    "type": "String",
+                    "multiplicity": "0..1",
+                    "documentation": "This is a string that represents a manufacturer-allocated number used to identify different instances of the same hardware item. The ModelNumber and PartNumber attributes are used to identify different types of hardware items. This is a REQUIRED attribute."
+                },
+                "versionNumber": {
+                    "type": "String",
+                    "multiplicity": "0..1",
+                    "documentation": "This is a string that identifies the version of this physical resource. This is an optional attribute."
+                },
+                "lifecycleState": {
+                    "type": "ResourceLifecycleStateType",
+                    "multiplicity": "0..1",
+                    "enumValues": [
+                        "planning",
+                        "installing",
+                        "operating",
+                        "retiring"
+                    ],
+                    "documentation": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
+                },
+                "note": {
+                    "type": "Note",
+                    "multiplicity": "*",
+                    "documentation": "Extra information about a given entity"
+                },
+                "relatedParty": {
+                    "type": "RelatedPartyRef",
+                    "multiplicity": "*",
+                    "documentation": "RelatedParty reference. A related party defines party or party role linked to a specific entity."
+                },
+                "relatedPlace": {
+                    "type": "RelatedPlaceRefOrValue",
+                    "multiplicity": "0..1",
+                    "documentation": "Related Entity reference. A related place defines a place described by reference or by value linked to a specific entity. The polymorphic attributes @type, @schemaLocation & @referredType are related to the place entity and not the RelatedPlaceRefOrValue class itself"
+                },
+                "resourceAttachment": {
+                    "type": "AttachmentRefOrValue",
+                    "multiplicity": "*",
+                    "documentation": "An attachment by value or by reference. For AttachmentRefOrValue, the attribute type,schemaLocation and referredType are related to the contained entity and not to AttchmentRefOrValue itself"
+                },
+                "resourceCharacteristic": {
+                    "type": "Characteristic",
+                    "multiplicity": "*",
+                    "documentation": "Describes a given characteristic of an object or entity through a name/value pair."
+                },
+                "resourceRelationship": {
+                    "type": "ResourceRelationship",
+                    "multiplicity": "*"
+                },
+                "resourceSpecification": {
+                    "type": "ResourceSpecificationRef",
+                    "multiplicity": "0..1",
+                    "documentation": "Resource Specification reference: The ResourceSpecification is required to realize a ProductSpecification."
+                }
+            }
+        },
         {
             "name": "resource",
             "class": "Resource",
@@ -42,34 +331,24 @@
                 "delete"
             ],
             "attributes": [
-                "@referredType",
                 "category",
                 "description",
                 "endOperatingDate",
                 "href",
                 "id",
                 "lifecycleState",
-                "lifecycleSubState",
-                "manufactureDate",
                 "name",
                 "note",
-                "partyRole",
-                "place",
-                "powerState",
                 "relatedParty",
+                "relatedPlace",
+                "resourceAttachment",
                 "resourceCharacteristic",
                 "resourceRelationship",
                 "resourceSpecification",
                 "resourceVersion",
-                "serialNumber",
                 "startOperatingDate"
             ],
             "attributeDetails": {
-                "@referredType": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "The actual type of the target instance when needed for disambiguation."
-                },
                 "category": {
                     "type": "String",
                     "multiplicity": "0..1",
@@ -106,36 +385,9 @@
                     ],
                     "documentation": "Tracks the lifecycle status of the resource, such as planning, installing, opereating, retiring and so on."
                 },
-                "lifecycleSubState": {
-                    "type": "ResourceLifecycleSubStateType",
-                    "multiplicity": "0..1",
-                    "enumValues": [
-                        "proposed",
-                        "feasibility checked",
-                        "designed",
-                        "ordered",
-                        "activated",
-                        "deactivated",
-                        "working",
-                        "working meets all SLAs",
-                        "working meets some SLAs",
-                        "working meets no SLA",
-                        "not working",
-                        "available",
-                        "not available",
-                        "assigned",
-                        "reserved"
-                    ],
-                    "documentation": "Tracks the lifecyclesubstate of the resource, e.g for lifecycleState:Planning subState: proposed, feasibility checked,..,for lifecycleState: Operating subState: activated, deactivated, working, not working,.. and so on."
-                },
-                "manufactureDate": {
-                    "type": "DateTime",
-                    "multiplicity": "0..1",
-                    "documentation": "This is a string attribute that defines the date of manufacture of this item in the fixed format \"dd/mm/yyyy\". This is an optional attribute."
-                },
                 "name": {
                     "type": "String",
-                    "multiplicity": "1",
+                    "multiplicity": "0..1",
                     "documentation": "A string used to give a name to the resource"
                 },
                 "note": {
@@ -143,25 +395,20 @@
                     "multiplicity": "*",
                     "documentation": "Extra information about a given entity"
                 },
-                "partyRole": {
-                    "type": "PartyRoleRef",
-                    "multiplicity": "*",
-                    "documentation": "Party role reference. A party role represents the part played by a party in a given context."
-                },
-                "place": {
-                    "type": "PlaceRef",
-                    "multiplicity": "0..1",
-                    "documentation": "Place reference. PlaceRef defines the placeRefs where the products are sold or delivered."
-                },
-                "powerState": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "This defines the current power status of the hardware item. Values include:\n\n  0:  Unknown\n  1:  Not Applicable\n  2:  No Power Applied\n  3: Full Power Applied\n  4:  Power Save - Normal\n  5:  Power Save - Degraded\n  6:  Power Save - Standby\n  7:  Power Save - Critical\n  8:  Power Save - Low Power Mode\n  9:  Power Save - Unknown\n 10: Power Cycle\n 11: Power Warning\n 12: Power Off"
-                },
                 "relatedParty": {
                     "type": "RelatedPartyRef",
                     "multiplicity": "*",
                     "documentation": "RelatedParty reference. A related party defines party or party role linked to a specific entity."
+                },
+                "relatedPlace": {
+                    "type": "RelatedPlaceRefOrValue",
+                    "multiplicity": "0..1",
+                    "documentation": "Related Entity reference. A related place defines a place described by reference or by value linked to a specific entity. The polymorphic attributes @type, @schemaLocation & @referredType are related to the place entity and not the RelatedPlaceRefOrValue class itself"
+                },
+                "resourceAttachment": {
+                    "type": "AttachmentRefOrValue",
+                    "multiplicity": "*",
+                    "documentation": "An attachment by value or by reference. For AttachmentRefOrValue, the attribute type,schemaLocation and referredType are related to the contained entity and not to AttchmentRefOrValue itself"
                 },
                 "resourceCharacteristic": {
                     "type": "Characteristic",
@@ -181,11 +428,6 @@
                     "type": "String",
                     "multiplicity": "0..1",
                     "documentation": "A field that identifies the specific version of an instance of a resource."
-                },
-                "serialNumber": {
-                    "type": "String",
-                    "multiplicity": "0..1",
-                    "documentation": "This is a string that represents a manufacturer-allocated number used to identify different instances of the same hardware item. The ModelNumber and PartNumber attributes are used to identify different types of hardware items. This is a REQUIRED attribute."
                 },
                 "startOperatingDate": {
                     "type": "DateTime",
@@ -241,6 +483,48 @@
                     "stateChange",
                     "delete"
                 ]
+            },
+            "PhysicalResource": {
+                "actions": [
+                    "list",
+                    "retrieve",
+                    "create",
+                    "partialupdate",
+                    "delete"
+                ],
+                "actionDetails": {
+                    "create": {
+                        "rules": {
+                            "MandatoryAttributes": {
+                                "mandatory": [
+                                    "name"
+                                ]
+                            },
+                            "PatchableAttributes": {
+                                "nonpatchable": [
+                                    "href",
+                                    "id"
+                                ]
+                            }
+                        }
+                    },
+                    "partialupdate": {
+                        "rules": {
+                            "PatchableAttributes": {
+                                "nonpatchable": [
+                                    "href",
+                                    "id"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "notifications": [
+                    "create",
+                    "attributeValueChange",
+                    "stateChange",
+                    "delete"
+                ]
             }
         }
     },
@@ -251,21 +535,35 @@
         "byFlavor": {
             "regular": {
                 "resourceIds": [
-                    "Resource"
+                    "Resource",
+                    "PhysicalResource",
+                    "LogicalResource"
                 ]
             }
         },
         "allRegularResources": [
-            "Resource"
+            "Resource",
+            "PhysicalResource",
+            "LogicalResource"
         ],
         "allEventResources": [
             "ResourceCreateEvent",
             "ResourceAttributeValueChangeEvent",
             "ResourceStateChangeEvent",
-            "ResourceDeleteEvent"
+            "ResourceDeleteEvent",
+            "PhysicalResourceCreateEvent",
+            "PhysicalResourceAttributeValueChangeEvent",
+            "PhysicalResourceStateChangeEvent",
+            "PhysicalResourceDeleteEvent"
         ],
         "eventNotifications": {
             "Resource": [
+                "create",
+                "attributeValueChange",
+                "stateChange",
+                "delete"
+            ],
+            "PhysicalResource": [
                 "create",
                 "attributeValueChange",
                 "stateChange",
@@ -276,7 +574,11 @@
             "ResourceCreateEvent": "Resource",
             "ResourceAttributeValueChangeEvent": "Resource",
             "ResourceStateChangeEvent": "Resource",
-            "ResourceDeleteEvent": "Resource"
+            "ResourceDeleteEvent": "Resource",
+            "PhysicalResourceCreateEvent": "PhysicalResource",
+            "PhysicalResourceAttributeValueChangeEvent": "PhysicalResource",
+            "PhysicalResourceStateChangeEvent": "PhysicalResource",
+            "PhysicalResourceDeleteEvent": "PhysicalResource"
         }
     },
     "modeledRules": {
@@ -289,11 +591,36 @@
         ],
         "resources": {
             "regular": [
-                "Resource"
+                "Resource",
+                "PhysicalResource",
+                "LogicalResource"
             ]
         },
         "rules": {
             "Resource": {
+                "regular": {
+                    "operations": [
+                        "GET",
+                        "POST",
+                        "PATCH",
+                        "DELETE"
+                    ],
+                    "mandatory in post": [
+                        "name"
+                    ],
+                    "non patchable": [
+                        "href",
+                        "id"
+                    ],
+                    "notifications": [
+                        "create",
+                        "attributeValueChange",
+                        "stateChange",
+                        "delete"
+                    ]
+                }
+            },
+            "PhysicalResource": {
                 "regular": {
                     "operations": [
                         "GET",
